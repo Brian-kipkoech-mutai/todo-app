@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"  />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
@@ -30,12 +33,92 @@
 
     </section>
  </div>
- <div id="login-card">
+ 
     <div class="illustation-container">
         <img src="../assets/login-illustration -small.png" alt="login illustration" srcset="" id="login-illustration">
 
-    </div>
+ 
   </div>
+  <div id="login-card">
+      <div class="logincard-text">
+        <h2>Create a new  <span class="bright-green">Account</span></h2>
+     <p>Already A Member?<span class="light-blue small-space">Log in</span></p>
+      </div>
+       <fieldset class="namecontainer">
+        <section id="first-name-container">
+            <div id="fisrt-name-innerdiv">
+                <fieldset>
+                    <legend>First name</legend>
+                    <input type="text">
+                </fieldset>
+            </div>
+            <div  id="firts-name-icondiv">
+                <i class="fas fa-address-card"></i>
+                
+            </div>
+        </section>
+        <section id="second-name-container">
+            <div id="second-name-innerdiv">
+                <fieldset>
+                    <legend>Second name</legend>
+                    <input type="text">
+                </fieldset>
+            </div>
+            <div  id="Second-name-icondiv">
+                <i class="fas fa-address-card"></i>
+            </div>
+        </section>
+       </fieldset>
+
+       <fieldset class="email-and-password">
+        <section id="email">
+            <div id="email-innerdiv">
+                <fieldset>
+                    <legend>Email</legend>
+                    <input type="email">
+                </fieldset>
+            </div>
+            <div  id="email-icon-div">
+                <i class="fas fa-envelope"></i>
+            </div>
+        </section>
+        <!--  -->
+        <section id="password">
+            <div id="password-inner-div">
+                <fieldset>
+                    <legend>Password</legend>
+                    <input type="password">
+                </fieldset>
+            </div>
+            <div  id="password-div-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+        </section>
+       </fieldset>
+       <!-- <fieldset class="google-signin"> -->
+         
+        <div id="g_id_onload"
+        data-client_id="447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com"
+        data-context="signup"
+        data-ux_mode="popup"
+        data-callback="response"
+        data-auto_prompt="false">
+   </div>
+   
+   <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="filled_black"
+        data-text="continue_with"
+        data-size="large"
+        data-logo_alignment="left"
+        data-width="400">
+   </div>    
+       <!-- </fieldset> -->
+  </div>
+
+
+   
 </div>
  <script src="../js/authntication.js"></script>
 </html>
