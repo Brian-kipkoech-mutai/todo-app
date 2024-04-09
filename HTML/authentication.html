@@ -18,7 +18,7 @@
 </head>
 <body>
      
-<div class='authenticationUi'>
+<div id='authenticationUi'>
  <div class="user-first-info">
     <section class="logo">
        <img src="../assets/logo_image.png" alt="Logo Image" srcset="" id="logo"> 
@@ -39,7 +39,8 @@
 
  
   </div>
-  <div id="login-card">
+  
+  <form id="login-card">
       <div class="logincard-text">
         <h2>Create a new  <span class="bright-green">Account</span></h2>
      <p>Already A Member?<span class="light-blue small-space">Log in</span></p>
@@ -49,7 +50,7 @@
             <div id="fisrt-name-innerdiv">
                 <fieldset>
                     <legend>First name</legend>
-                    <input type="text">
+                    <input type="text" autocapitalize="^" >
                 </fieldset>
             </div>
             <div  id="firts-name-icondiv">
@@ -75,7 +76,7 @@
             <div id="email-innerdiv">
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email">
+                    <input type="email" autocomplete="email">
                 </fieldset>
             </div>
             <div  id="email-icon-div">
@@ -87,7 +88,7 @@
             <div id="password-inner-div">
                 <fieldset>
                     <legend>Password</legend>
-                    <input type="password">
+                    <input type="password" autocomplete="new-password">
                 </fieldset>
             </div>
             <div  id="password-div-icon">
@@ -95,7 +96,7 @@
             </div>
         </section>
        </fieldset>
-       <!-- <fieldset class="google-signin"> -->
+       <fieldset class="google-signin">
          
         <div id="g_id_onload"
         data-client_id="447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com"
@@ -103,8 +104,7 @@
         data-ux_mode="popup"
         data-callback="response"
         data-auto_prompt="false">
-   </div>
-   
+        
    <div class="g_id_signin"
         data-type="standard"
         data-shape="rectangular"
@@ -112,10 +112,12 @@
         data-text="continue_with"
         data-size="large"
         data-logo_alignment="left"
-        data-width="400">
+        data-width="350">
    </div>    
-       <!-- </fieldset> -->
-  </div>
+       </fieldset>
+    </form>
+   
+
 
 
    

@@ -5,21 +5,27 @@
 *{
     box-sizing: border-box;
 }
-.authenticationUi{
-   min-width: 100vw;
-    height: 100vh;
+#authenticationUi{
+    width: 100vw;
+    margin: 0;
+    min-height: 100vh;
     padding-right: 1em;
-    background:linear-gradient(90deg,#162D4600,#182636,#040d16);
+    /* background:linear-gradient(9deg,#162D4600,#182636,#040d16); */
     /* opacity: 0.9; */
-     backdrop-filter: blur(4px);
+     backdrop-filter: blur(7px);
      display: flex;
      justify-content: space-between;
      flex-wrap: wrap;
+     transition: backdrop-filter 0.5s ease-in-out;
+     padding-left: 1em;
+      
    
     
 }
+  
 body{
     margin: 0;
+    padding: 0;
     background-image: url(../assets/logo_trial-removebg-preview.png);
     
     background-size:35%;
@@ -33,6 +39,8 @@ body{
 #logo{
     margin-top: 1em;
     width: max(7em);
+    margin-left: -43px;
+    
     
 }
  .logo{
@@ -55,8 +63,11 @@ body{
  }
  #user-welcome-text{
     color:#ffffff ;
-    width: max(400px,30vh);
-    padding-left: 2.5em;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 500px;
+    padding-left:0;
     font-family:"Mona Sans" ;
     font-weight: 300;
     line-height:normal;
@@ -75,9 +86,10 @@ body{
  }
     
  h1{
-    font-size: 2.2em;
+    font-size:min(2.2em,8vw);
     font-weight: 200;
     text-wrap: nowrap;
+    padding-left: 0;
  }
 .strong{
     font-weight:bold;
@@ -111,10 +123,12 @@ body{
  flex-direction: column;
  gap: 1em;
  margin-bottom: 3em;
- width: 400px;
+ width: 360px;
+ 
  
  
 }
+
 #login-card h2{
     color: #ffffff;
     font-weight: 100;
@@ -132,7 +146,7 @@ body{
     display: flex;
     justify-content: space-between;
     padding: 0;
-    gap: 2em;
+    
     border-style: none;
 
 }
@@ -225,12 +239,22 @@ body{
   }
   .google-signin{
     background-color: #323644;
-    border-radius: 0.5em;
-    border-style: none;
+    border-radius: 0.4em;
+    /* border-style: none; */
     padding: 0.1em;
+    z-index: 3;
+    padding-left: 0;
+    border: 1px solid transparent;
+
+    
     
 
   }
+  .google-signin:hover{
+    border: 1px solid #63B5E5;
+  }
    
- 
+ #login-card section:hover i{
+    color: #FFFFFF;
+ }
  
