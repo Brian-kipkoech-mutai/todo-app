@@ -14,13 +14,27 @@ function response({credential}){
 }
  
 let deg=90;
+let forward=true;
+let backward=false
    function animateBackground(){
-      deg++;
          
-      if(deg==100){
-        deg=90
+      if(deg==130){
+        forward=false
+        backward=true
+        
       }
+      if(deg==90){
+        forward=true;
+        backward=false;
+      }
+
+      if(forward){
+        deg+=0.5;
+    }
+    if(backward){
+        deg-=0.5
+    }
     authenticationUi.style.background=`linear-gradient(${deg}deg,#162D4600,#182636,#040d16)`
     console.log(deg);
    }
-    setInterval(()=>animateBackground(),300)
+    setInterval(()=>animateBackground(),100)
