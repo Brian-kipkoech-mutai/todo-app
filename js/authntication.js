@@ -1,4 +1,18 @@
   const authenticationUi =document.getElementById('authenticationUi');
+   
+  
+  let clientwidth=document.body.clientWidth
+  
+  let intervalsID=setInterval(()=>backdropanimation(),300)
+
+window.addEventListener('resize',()=>{
+    clientwidth=document.body.clientWidth
+console.log('clientwidth',clientwidth);
+
+    intervalsID =setInterval(()=>backdropanimation(),300)
+
+})
+//response WebToken from google;
 function response({credential}){
         
     const spited= credential.split('.');
@@ -12,29 +26,31 @@ function response({credential}){
 
 
 }
- 
-let deg=90;
-let forward=true;
-let backward=false
-   function animateBackground(){
-         
-      if(deg==130){
-        forward=false
-        backward=true
-        
-      }
-      if(deg==90){
-        forward=true;
-        backward=false;
-      }
+  //  function to control the background  blur filter //
+   let blurPixels=9
+  let increaseBlur=true
 
-      if(forward){
-        deg+=0.5;
+    function backdropanimation(){
+      if(blurPixels>=9){
+        increaseBlur=false
+      }
+      increaseBlur ? blurPixels+=0.1:blurPixels-=0.1;
+       if(clientwidth>1000){
+        if(blurPixels<=0){
+          
+            clearInterval(intervalsID)
+            
+        }
+       }
+        if(clientwidth<1000){
+        if(blurPixels<=2){
+          increaseBlur=true
+        }
+       }
+       
+     console.log('blur',blurPixels);
+      authenticationUi.style.backdropFilter=`blur(${blurPixels}px)`
+          
     }
-    if(backward){
-        deg-=0.5
-    }
-    authenticationUi.style.background=`linear-gradient(${deg}deg,#162D4600,#182636,#040d16)`
-    console.log(deg);
-   }
-    setInterval(()=>animateBackground(),100)
+    
+    // let intervalsID=setInterval(()=>backdropanimation(),timeSpan)
