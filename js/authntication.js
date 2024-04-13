@@ -1,6 +1,10 @@
   const authenticationUi =document.getElementById('authenticationUi');
-   
+  const methodButton=document.getElementById('method');
+  const actionButton=document.getElementById('action');
+  const nameContainer=document.getElementById('nameContainer');
+
   
+
   let clientwidth=document.body.clientWidth
   
   let intervalsID=setInterval(()=>backdropanimation(),300)
@@ -52,5 +56,35 @@ function response({credential}){
       authenticationUi.style.backdropFilter=`blur(${blurPixels}px)`
           
     }
+    let isloggingin=false;
+    const handleMethodChange=()=>{
+      
+      isloggingin=!isloggingin
+      console.log('islogged in',isloggingin);
+      if(isloggingin){
+        nameContainer.style.transition= 'opacity ease-in-out 0.2s, height  ease-in-out 0.5s'
+          nameContainer.style.opacity='0'
+          nameContainer.style.height='0'
+           
+          actionButton.style.color='#F8FCFF00'
+          setTimeout(()=>{
+            actionButton.innerText='login'
+            actionButton.style.color='#F8FCFF'
+          },500)
+           
+          
+      }
+      else{
+        nameContainer.style.transition='opacity ease-in-out 1s, height  ease-in-out 0.5s'
+        nameContainer.style.opacity='initial'
+        nameContainer.style.height='3em'
+        actionButton.style.color='#F8FCFF00'
+        setTimeout(()=>{
+          actionButton.innerText='Create Account'
+          actionButton.style.color='#F8FCFF'
+        },500)
+          
+      }
+    }
     
-    // let intervalsID=setInterval(()=>backdropanimation(),timeSpan)
+    methodButton.addEventListener('click',handleMethodChange)   

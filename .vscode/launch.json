@@ -7,8 +7,9 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open authentication.html",
-            "file": "/mnt/c/users/admin/todo-App/HTML/authentication.html"
+            "name": "Launch Edge against localhost",
+            "url": "http://localhost:5500",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

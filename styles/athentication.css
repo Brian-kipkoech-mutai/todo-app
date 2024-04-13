@@ -157,12 +157,21 @@ body{
     display: flex;
     justify-content: space-between;
     padding: 0;
-    
-    border-style: none;
+    opacity: 1;
+    height: 3em;
 
+    /* transition: opacity ease-in-out 1s, height  ease-in-out 0.5s ; */
+     
+     
+    border-style: none;
+    gap: 2em;
+      
 }
+ 
+ 
 .namecontainer input{
     width:min( 120px,30vw);
+    
     background-color: inherit;
     border-radius: 0.5em;
     border: none;
@@ -172,6 +181,7 @@ body{
     font-size: 1em;
 
 }
+
 .namecontainer legend{
     font-size: 0.7em;
     color:#C4C4C4;
@@ -279,27 +289,36 @@ body{
     margin-top: 0.5em;
  }
  
- .method,.action{
-    font-size:min(1em,4.2vw)
+ #method,#action{
+    font-size:min(1em,4.2vw);
+    width: 48%;
+    text-align: center;
  }
-.method{
+#method{
     background-color: #313543;
     padding: 0.8em 1.5em;
     border-radius: 1.5em;
     color: #F8FCFF;
     cursor: pointer;
+     
     
 }
-.action{
+#action{
     background-color: #313543;
     padding: 0.8em 1.5em;
     border-radius: 1.5em; 
-    color: #F8FCFF;
+    color: #F8FCFFFF;
    background-color:#63B5E5;
     cursor: pointer;
+    
+    transition:color 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out;
      
 }
-    
+
+  #method:active{
+    background-color:#63B5E5;
+  }  
 
 .divider{
     display: flex;
@@ -320,10 +339,16 @@ body{
     background-color: #63B5E5;
     color: #F8FCFF;
   }
+  input:-webkit-autofill
+    {
+      
+      -webkit-text-fill-color:#63B5E5;
+      -webkit-box-shadow: none;
+      transition: background-color 5000s ease-in-out 0s;
+  }
+
  @media (max-width:1096px){
-    #authenticationUi{
-        
-    }
+     
     #login-card{
         margin-left: auto;
 
