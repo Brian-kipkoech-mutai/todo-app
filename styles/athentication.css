@@ -312,11 +312,16 @@ body{
     cursor: pointer;
     
     transition:color 0.5s ease-in-out;
-    transition: color 0.5s ease-in-out;
      
+  
 }
 
-  #method:active{
+#user-welcome-text-loginCard{
+    opacity: 1;
+    transition: opacity ease-in-out 0.5s;
+}
+
+#method:active{
     background-color:#63B5E5;
   }  
 

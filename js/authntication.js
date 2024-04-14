@@ -2,10 +2,11 @@
   const methodButton=document.getElementById('method');
   const actionButton=document.getElementById('action');
   const nameContainer=document.getElementById('nameContainer');
+  const loginUserText=document.getElementById('user-welcome-text-loginCard')
 
   
 
-  let clientwidth=document.body.clientWidth
+  let clientwidth=document.body.clientWidth;
   
   let intervalsID=setInterval(()=>backdropanimation(),300)
 
@@ -47,14 +48,14 @@ function response({credential}){
         }
        }
         if(clientwidth<1000){
-        if(blurPixels<=2){
+        if(blurPixels<2){
           increaseBlur=true
         }
        }
        
-     console.log('blur',blurPixels);
+      
       authenticationUi.style.backdropFilter=`blur(${blurPixels}px)`
-          
+      console.log('blur',blurPixels);
     }
     let isloggingin=false;
     const handleMethodChange=()=>{
@@ -65,26 +66,40 @@ function response({credential}){
         nameContainer.style.transition= 'opacity ease-in-out 0.2s, height  ease-in-out 0.5s'
           nameContainer.style.opacity='0'
           nameContainer.style.height='0'
-           
+           loginUserText.style.opacity='0'
           actionButton.style.color='#F8FCFF00'
           setTimeout(()=>{
+            loginUserText.style.opacity='1'
             actionButton.innerText='login'
             actionButton.style.color='#F8FCFF'
+            loginUserText.innerHTML='<h2>Welcome <span class="bright-green">back</span></h2>'
           },500)
-           
+          
+         
           
       }
       else{
+        loginUserText.style.opacity='0'
         nameContainer.style.transition='opacity ease-in-out 1s, height  ease-in-out 0.5s'
         nameContainer.style.opacity='initial'
         nameContainer.style.height='3em'
         actionButton.style.color='#F8FCFF00'
+        loginUserText
         setTimeout(()=>{
+          loginUserText.style.opacity='1'
           actionButton.innerText='Create Account'
           actionButton.style.color='#F8FCFF'
+          loginUserText.innerHTML='<h2>Create a new  <span class="bright-green">Account</span></h2>'
         },500)
-          
+         
+
       }
     }
     
+    function handleLoginClick(){
+      console.log('hello  my fried')
+    if(!isloggingin){
+      handleMethodChange()
+    }
+    }
     methodButton.addEventListener('click',handleMethodChange)   
