@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'mona Sans';
+    src: url(../assets/Mona-Sans.ttf);
+}
+*{
+    box-sizing: border-box;
+    font-family: 'mona Sans';
+    color:white;
+    
+}
+
+body{
+    margin: 0;
+    font-size: 16px;
+} 
+.ui{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    background-color:#121212 ;
+     
+    
+}
+svg{
+    
+     margin-top: -4.5em;
+}
+
+.top{
+    color:#F8F9FA;
+    padding: 0 1em;
+ }
+#profile-picture{
+    width:2em;
+    height: 2em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.weclome-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size:1.8em;
+    color:#F8F9FA;
+}
+#page-title{
+    display: flex;
+    justify-content: center;
+
+}
+.middle{
+    display: flex;
+    flex-direction: column;
+      
+    align-items: center;
+    height: 60%;
+    gap: 0;
+     
+    
+     
+}
+ 
+
+ .middle p{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    margin-top: 0;
+    
+    
+ }
+ .middle p:first-of-type{
+    font-size: 1.3em;
+    margin-bottom: 1em;
+ }
+ .plus-symbol{
+    color:#8687E7;
+font-size: 1.5em;
+margin:0.3em;
+
+ }
+ .bottom{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    font-size: 1.7em;
+    background-color: #363636;
+    padding:0 1.0em;
+     
+    
+ }
+  i:hover{
+    color: #8687E7;
+ }
+ i{
+    color:#e5e5e5;
+    cursor: pointer;
+    
+     
+ }
+ #plus-icon{
+    font-size: 3em;
+    transform: translateY(-50%);
+    color: #8687E7;
+    background-color:#e5e5e5;
+    border-radius: 50%;
+    
+ }
+ .icons-label{
+    font-weight: initial;
+    font-size: 0.5em;
+    color:#e5e5e5;
+ }
+.bottom>section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+ 

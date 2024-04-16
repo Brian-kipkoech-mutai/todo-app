@@ -97,7 +97,7 @@ function response({credential}){
     }
     
     function handleLoginClick(){
-      console.log('hello  my fried')
+       
     if(!isloggingin){
       handleMethodChange()
     }
