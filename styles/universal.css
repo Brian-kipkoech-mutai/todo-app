@@ -1,0 +1,15 @@
+
+ @font-face {
+    font-family: 'mona Sans';
+    src: url(../fonts/Mona-Sans.ttf);
+ }
+ *{
+    font-family: 'mona Sans';
+    box-sizing: border-box;
+ }
+ body{
+    background-color:#121212;
+ }
+ i{
+    color: #ffffff;
+ }
