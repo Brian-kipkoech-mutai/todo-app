@@ -9,7 +9,9 @@
  }
  body{
     background-color:#121212;
+    color: white;
  }
  i{
     color: #ffffff;
+    cursor: pointer;
  }

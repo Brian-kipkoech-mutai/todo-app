@@ -1,0 +1,108 @@
+body{
+    font-size: 16px;
+}
+.login-back-btn-container{
+    width: 100%;
+     
+}
+.login-form{
+    width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0;
+}
+.login-form fieldset{
+    border-style: none;
+    
+    padding:0 ;
+    
+ 
+    
+}
+.login-form fieldset legend{
+    font-size: 0.8em;
+    padding-left: 0.2em;
+}
+.login-form fieldset input{
+    margin-top: 0.5em;
+    padding: 0.8em 1em;
+    width: 100%;
+    border-radius: 0.5em;
+    border: 1px solid transparent;
+    background-color: #1D1D1D;
+    outline: none;
+    color: #FFFFFF;
+}
+.login-form fieldset input:hover{
+    border: 1px solid grey;
+}
+.login-text{
+     
+    width: 100%;
+    
+}
+.login-text h1{
+    text-align: left;
+    margin: 0;
+}
+.login-btn{
+    width: 100%;
+    max-width: 400px;
+   border-radius: 0.5em;
+   border: 1px solid transparent;
+   background-color: #8687E7;
+   text-align: center;
+   padding: 0.6em 1em;
+   cursor: pointer;
+
+}
+.divider{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap:0.5em;
+    max-width: 400px;
+}
+.divider :first-child,.divider :last-child{
+    flex-grow: 1;
+    height: 1px;
+    background-color: #979797;
+    border-radius:0.1em;
+   
+
+}
+  
+@media (min-width : 600px ) {
+    .login-text h1{
+        text-align: center;
+    }
+}
+.divider:hover  section:not(:nth-child(2)){
+background-color: #8687E7;
+}
+.login-user-question {
+    font-size: 0.8em;
+}
+.login-user-question :first-child{
+    color: #979797;
+}
+.login-user-question :last-child{
+    cursor: pointer;
+
+}
+.login-user-question :last-child:hover{
+    color: #8687E7;
+}
+.login-user-question::after{
+    content: '';
+  display: block;
+  width: 70%;
+  height: 5px;
+  margin: 0.5em auto;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  border: none;
+
+}

@@ -133,10 +133,7 @@ cursor: pointer;
 
 
  }
-#svg{
-    transform: translatey(40%);
-    transition: transform ease-in-out 0.5s ;
-}
+
 #body-intro::-webkit-scrollbar{
    display: none;
 }
