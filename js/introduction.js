@@ -124,7 +124,7 @@ const page_content=[
         <path d="M92.2534 111.068C91.1988 108.241 91.4361 102.099 94.6394 102.694C97.0122 103.13 94.8108 106.392 96.9199 106.749C99.0291 107.105 94.7185 96.9614 100.097 94.399C105.212 91.9555 110.643 93.4216 111.012 99.6823C111.328 105.322 109.245 107.435 111.012 107.435C112.778 107.435 111.012 103.552 114.175 103.909C117.339 104.266 117.352 112.032 119.106 112.032C120.859 112.032 119.817 87.3327 119.817 87.3327L94.4549 83.0532L87.7715 97.1728L92.2534 111.068Z" fill="#425AC2"/>
         </svg>
         <div id="guide_bars">
-<span id="block-1"></span><span id="block-2"></span><span id="block-3"></span>
+<span  class="page-bar" id="block-1"></span><span  class="page-bar" id="block-2"></span><span  class="page-bar" id="block-3"></span>
         </div>
 </section>
 <section class="users_text">
@@ -277,7 +277,7 @@ const page_content=[
                 </svg>
                 
                  <div id="guide_bars">
-        <span id="block-1"></span><span id="block-2"></span><span id="block-3"></span>
+        <span  class="page-bar" id="block-1"></span><span  class="page-bar" id="block-2"></span><span  class="page-bar" id="block-3"></span>
                 </div>
         </section>
         <section class="users_text">
@@ -381,7 +381,7 @@ const page_content=[
         </svg>
         
          <div id="guide_bars">
-<span id="block-1"></span><span id="block-2"></span><span id="block-3"></span>
+<span  class="page-bar" id="block-1" ></span><span  class="page-bar" id="block-2"></span><span  class="page-bar" id="block-3"></span>
         </div>
 </section>
 <section class="users_text">
@@ -425,7 +425,7 @@ const page_content=[
 
 //  },1000)
 // },500)
-let i=1;
+let i=0;
  const tl=gsap.timeline()
 tl.fromTo('.logoContainer',{
     y:'-500',
@@ -467,11 +467,28 @@ function nextPage(){
     {
         x:'0%',
         opacity:1,
-        duration:0.6,
-        ease:'back.out(1)'
+        duration:0.5,
+        ease:"power4.out"
     })
      
     body_intro.innerHTML=page_content[i];
+    const blocks= document.querySelectorAll(".page-bar");
+    console.log(',blocks',blocks);
+ gsap.to(blocks[i-1],{
+    backgroundColor:'#FFFFFF',
+    duration:0.5,
+    delay:0.5
+     
+ })
+ blocks.forEach((block,index)=>{
+    if(index!=i-1){
+        gsap.to(block,{
+            backgroundColor:'grey',
+            duration:0.5,
+        })
+    }
+ })
+
  }
 
 }
@@ -489,10 +506,28 @@ function previousPage(){
         {
             x:'0%',
             opacity:1,
-            duration:0.6,
-            ease:'back.out(1)'
+            duration:0.5,
+            ease: "power4.out"
         })
         body_intro.innerHTML=page_content[i];
+        const blocks= document.querySelectorAll(".page-bar");
+        console.log(',blocks',blocks);
+     gsap.to(blocks[i-1],{
+        backgroundColor:'#FFFFFF',
+        duration:0.5,
+        delay:0.5
+         
+     })
+     blocks.forEach((block,index)=>{
+        if(index!=i-1){
+            gsap.to(block,{
+                backgroundColor:'grey',
+                duration:0.5,
+                 
+               
+            })
+        }
+     })
      }
     
 }
