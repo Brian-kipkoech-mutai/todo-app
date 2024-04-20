@@ -40,7 +40,7 @@
     
     
  }
- #guide_bars span:not(#guide_bars span:first-of-type){
+ #guide_bars span:not(:first-of-type){
     margin-left: 0.5em;
  }
  h1{

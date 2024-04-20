@@ -1,4 +1,5 @@
 const body_intro=document.getElementById('body-intro');
+const googleScript=document.getElementById('googleScript')
 // const svg_box=document.getElementById('svg_box');
 // const h1_text=document.getElementById('h1_text');
 // const p_text=document.getElementById('p_text');
@@ -408,11 +409,11 @@ const page_content=[
     <div class="login-form">
         <fieldset class="login-username-conatiner">
             <legend>Username</legend>
-            <input type="text" name="" id="lagin-name-input" placeholder="Enter your Username" >
+            <input type="text" name="" id="login-name-input" placeholder="Enter your Username" >
         </fieldset>
         <fieldset class="login-password-container">
             <legend>Password</legend>
-            <input type="password" name="" id="lagin-password-input" placeholder="Enter your Password" >
+            <input type="password" name="" id="login-password-input" placeholder="Enter your Password" >
         </fieldset>
     </div>
     <div class="login-btn">
@@ -423,29 +424,49 @@ const page_content=[
         <section>or</section>
         <section></section>
     </div>
-    <div class="login-google-btn">
-        <div id="g_id_onload"
-     data-client_id="447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-callback="handleGoogleResponse"
-     data-auto_prompt="false">
-</div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="rectangular"
-     data-theme="filled_black"
-     data-text="googleSign_in"
-     data-size="large"
-     data-logo_alignment="left"
-     data-width="370">
-</div>
-    </div>
-    <div class="login-user-question">
-        <span>Don't have an account?</span> <span id="register"> Register</span>
+    <section class="register-with-google-container"></section>
+     <div class="login-user-question">
+        <span>Don't have an account?</span> <span id="register" onclick="moveToRegistration()"> Register</span>
     </div>
 
+        `
+        ,
+
+        `
+        <section class="registration-back-button" onclick="previousPage()">
+        
+        <i class="fas fa-angle-left"></i></section>
+         <section class="registration-title">
+            <h1>
+                Register
+            </h1>
+         </section>
+         <form class="registration-form">
+            <fieldset class="registartio-name-container">
+                <legend>Username</legend>
+                <input type="text" id="" name="" placeholder="Enter your Username">
+            </fieldset>
+            <fieldset class="resigration-email-container">
+                <legend>Email</legend>
+                <input type="text" name="" id="" placeholder="Enter your Email address">
+            </fieldset>
+            <fieldset class="registration-password-container">
+                <legend>Password</legend>
+                <input type="password" name="" id="" placeholder="Enter New Password">
+            </fieldset>
+            <fieldset class="registration-confirm-passwd-container">
+                <legend>Confirm Password</legend>
+                <input type="password" name="" id="" placeholder="Confirm Password">
+            </fieldset>
+            <section class="register-btn">Register</section>
+        </form>
+         <section class="divider">
+            <div></div>
+            <div>or</div>
+            <div></div>
+         </section>
+         <section class="register-with-google-container"></section>
+          <section class="login-registration-text"> <span>Already have an Account?</span><span onclick="moveToLogin()">Login</span></section>
         `
         
         
@@ -471,15 +492,13 @@ tl.fromTo(logoContainer,{
          onComplete: delay, 
          
     })
-    
-    
-    
+     
     function delay(){
         setTimeout(()=>nextPage(),500)
     }
     
 function nextPage(){
-    console.log('called next page');
+   
     
     
  if(i<page_content.length-1){
@@ -518,6 +537,14 @@ function nextPage(){
     }
  })
    }
+   if(i==4){
+     console.log('calllled the initializiation')
+
+    insertGoogleButton()
+
+    initializeGoogleSignIn()
+   }
+
 
  }
 
@@ -565,3 +592,91 @@ function previousPage(){
       }
     
 }
+
+function moveToRegistration(){
+    body_intro.innerHTML=page_content[i+1]
+    
+    console.log('move to next page called');
+    gsap.fromTo(body_intro,{
+        y:-500,
+        opacity:0
+    },
+    {
+        y:0,
+        opacity:1,
+        duration:0.5,
+        ease: "power3.out"
+
+
+    })
+     
+     
+}
+function moveToLogin(){
+     
+    body_intro.innerHTML=page_content[i]
+    if(i==4){
+        console.log('calllled the initializiation from text')
+   
+       insertGoogleButton()
+       initializeGoogleSignIn()
+      }
+    
+    gsap.fromTo(body_intro,{
+        y:500,
+        opacity:0
+    },
+    {
+        y:0,
+        opacity:1,
+        duration:0.5,
+        ease: "power3.out"
+        
+
+    })
+     
+}
+
+
+function insertGoogleButton() {
+    const googleContainer = document.querySelector('.register-with-google-container');
+  
+    // Create the login button element dynamically
+    const loginButton = document.createElement('div');
+    loginButton.classList.add('login-google-btn');
+  
+    const gIdOnLoad = document.createElement('div');
+    gIdOnLoad.id = "g_id_onload";
+    gIdOnLoad.dataset.clientId = "447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com"; 
+    gIdOnLoad.dataset.context = "signin";
+    gIdOnLoad.dataset.uxMode = "popup";
+    gIdOnLoad.dataset.callback = "handleGoogleResponse";
+    gIdOnLoad.dataset.autoPrompt = "false";
+    loginButton.appendChild(gIdOnLoad);
+  
+    const gIdSignin = document.createElement('div');
+    gIdSignin.classList.add('g_id_signin');
+    gIdSignin.dataset.type = "standard";
+    gIdSignin.dataset.shape = "rectangular";
+    gIdSignin.dataset.theme = "filled_black";
+    gIdSignin.dataset.text = "googleSign_in";
+    gIdSignin.dataset.size = "large";
+    gIdSignin.dataset.logoAlignment = "left";
+    gIdSignin.dataset.width = "370";
+    loginButton.appendChild(gIdSignin);
+  
+    googleContainer.appendChild(loginButton);
+    console.log(googleContainer );
+  }
+  
+
+  function initializeGoogleSignIn() {
+    google.accounts.id.initialize({
+      client_id: '447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com',
+      callback: handleGoogleResponse
+    });
+  }
+  
+  const handleGoogleResponse=(e)=>{
+    console.log(e);
+  }
