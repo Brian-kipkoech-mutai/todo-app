@@ -1,8 +1,6 @@
 const body_intro=document.getElementById('body-intro');
-const googleScript=document.getElementById('googleScript')
-// const svg_box=document.getElementById('svg_box');
-// const h1_text=document.getElementById('h1_text');
-// const p_text=document.getElementById('p_text');
+ 
+ 
 const page_content=[
      `
      <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:translateY(40%);" id="svg">
@@ -476,7 +474,7 @@ const page_content=[
 let i=0;
  const logoContainer=document.getElementsByClassName('logoContainer')[0];
  logoContainer.innerHTML=page_content[i];
- console.log(logoContainer);
+ 
  const tl=gsap.timeline()
 tl.fromTo(logoContainer,{
     y:'-500',
@@ -502,7 +500,7 @@ function nextPage(){
     
     
  if(i<page_content.length-1){
-    console.log(i);
+ 
       i+=1;
     
     gsap.fromTo(body_intro,{
@@ -521,7 +519,7 @@ function nextPage(){
    if(i<4){
    
     const blocks= document.querySelectorAll(".page-bar");
-    console.log(',blocks',blocks);
+  
  gsap.to(blocks[i-1],{
     backgroundColor:'#FFFFFF',
     duration:0.5,
@@ -538,11 +536,20 @@ function nextPage(){
  })
    }
    if(i==4){
-     console.log('calllled the initializiation')
+     
+    
+    const google_btn_container=document.getElementsByClassName('register-with-google-container')[0]
 
-    insertGoogleButton()
-
-    initializeGoogleSignIn()
+        
+        
+            
+     setTimeout(()=>{
+        initializeGoogleSignIn(google_btn_container);
+     },5000)
+        
+    
+      
+    
    }
 
 
@@ -551,7 +558,7 @@ function nextPage(){
 }
 function previousPage(){
     if(i>1){
-        console.log(i);
+      
           i-=1;
         
         gsap.fromTo(body_intro,{
@@ -570,7 +577,7 @@ function previousPage(){
         if(i<4){
              
             const blocks= document.querySelectorAll(".page-bar");
-            console.log(',blocks',blocks);
+           
          gsap.to(blocks[i-1],{
             backgroundColor:'#FFFFFF',
             duration:0.5,
@@ -616,10 +623,13 @@ function moveToLogin(){
      
     body_intro.innerHTML=page_content[i]
     if(i==4){
-        console.log('calllled the initializiation from text')
+     
    
-       insertGoogleButton()
-       initializeGoogleSignIn()
+        
+      
+         
+       
+        
       }
     
     gsap.fromTo(body_intro,{
@@ -636,47 +646,30 @@ function moveToLogin(){
     })
      
 }
-
-
-function insertGoogleButton() {
-    const googleContainer = document.querySelector('.register-with-google-container');
-  
-    // Create the login button element dynamically
-    const loginButton = document.createElement('div');
-    loginButton.classList.add('login-google-btn');
-  
-    const gIdOnLoad = document.createElement('div');
-    gIdOnLoad.id = "g_id_onload";
-    gIdOnLoad.dataset.clientId = "447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com"; 
-    gIdOnLoad.dataset.context = "signin";
-    gIdOnLoad.dataset.uxMode = "popup";
-    gIdOnLoad.dataset.callback = "handleGoogleResponse";
-    gIdOnLoad.dataset.autoPrompt = "false";
-    loginButton.appendChild(gIdOnLoad);
-  
-    const gIdSignin = document.createElement('div');
-    gIdSignin.classList.add('g_id_signin');
-    gIdSignin.dataset.type = "standard";
-    gIdSignin.dataset.shape = "rectangular";
-    gIdSignin.dataset.theme = "filled_black";
-    gIdSignin.dataset.text = "googleSign_in";
-    gIdSignin.dataset.size = "large";
-    gIdSignin.dataset.logoAlignment = "left";
-    gIdSignin.dataset.width = "370";
-    loginButton.appendChild(gIdSignin);
-  
-    googleContainer.appendChild(loginButton);
-    console.log(googleContainer );
-  }
-  
-
-  function initializeGoogleSignIn() {
+ document.addEventListener('DOMContentLoaded',()=>{
+    console.log('content loaded');
     google.accounts.id.initialize({
-      client_id: '447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com',
-      callback: handleGoogleResponse
-    });
-  }
-  
-  const handleGoogleResponse=(e)=>{
-    console.log(e);
+        client_id: '447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com',
+        callback: handleCredentialResponse
+      });
+ })
+
+   
+  function initializeGoogleSignIn(domElement){
+   
+         
+        
+          google.accounts.id.renderButton(
+            domElement,
+            { theme: 'filled_black', width:'400'  }
+          );
+        // google.accounts.id.prompt();
+      };
+     
+    
+       
+    
+ 
+  function handleCredentialResponse(response) {
+    console.log('Credential received: ', response);
   }
