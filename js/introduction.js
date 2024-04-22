@@ -414,7 +414,7 @@ const page_content=[
             <input type="password" name="" id="login-password-input" placeholder="Enter your Password" >
         </fieldset>
     </div>
-    <div class="login-btn">
+    <div class="login-btn" onclick="login()">
         login
     </div>
     <div class="divider">
@@ -521,6 +521,7 @@ function nextPage(){
     const blocks= document.querySelectorAll(".page-bar");
   
  gsap.to(blocks[i-1],{
+
     backgroundColor:'#FFFFFF',
     duration:0.5,
     delay:0.2
@@ -536,23 +537,9 @@ function nextPage(){
  })
    }
    if(i==4){
-     
-    
     const google_btn_container=document.getElementsByClassName('register-with-google-container')[0]
-
-        
-        
-            
-     setTimeout(()=>{
-        initializeGoogleSignIn(google_btn_container);
-     },5000)
-        
-    
-      
-    
+        renderGoogleSignInBtn(google_btn_container); 
    }
-
-
  }
 
 }
@@ -623,13 +610,8 @@ function moveToLogin(){
      
     body_intro.innerHTML=page_content[i]
     if(i==4){
-     
-   
-        
-      
-         
-       
-        
+        const google_btn_container=document.getElementsByClassName('register-with-google-container')[0]
+         renderGoogleSignInBtn(google_btn_container);
       }
     
     gsap.fromTo(body_intro,{
@@ -647,22 +629,18 @@ function moveToLogin(){
      
 }
  document.addEventListener('DOMContentLoaded',()=>{
-    console.log('content loaded');
+   
     google.accounts.id.initialize({
         client_id: '447958306786-bvqhqia3cqrs5eibr836ug048fp5qbho.apps.googleusercontent.com',
         callback: handleCredentialResponse
       });
+      
  })
 
    
-  function initializeGoogleSignIn(domElement){
+  function renderGoogleSignInBtn(domElement){
    
-         
-        
-          google.accounts.id.renderButton(
-            domElement,
-            { theme: 'filled_black', width:'400'  }
-          );
+    google.accounts.id.renderButton(domElement,{ theme: 'filled_black', width:'400'  });
         // google.accounts.id.prompt();
       };
      
@@ -672,4 +650,10 @@ function moveToLogin(){
  
   function handleCredentialResponse(response) {
     console.log('Credential received: ', response);
+  }
+
+  function login(){
+      
+     
+     window.location.href='http://localhost:5500/HTML/'
   }
