@@ -12,6 +12,8 @@
 body{
     margin: 0;
     font-size: 16px;
+    height: 100vh;
+    overflow-y: auto;
 } 
 .ui{
     display: flex;
@@ -86,9 +88,10 @@ margin:0.3em;
     display: flex;
     justify-content:space-between;
     align-items: center;
-    font-size: 1.7em;
+    /* font-size:max(1.2em,2vw) ; */
     background-color: #363636;
-    padding:0 1.0em;
+    padding:0 0.3em;
+    font-size: 1.3em
      
     
  }
@@ -102,7 +105,8 @@ margin:0.3em;
      
  }
  #plus-icon{
-    font-size: 3em;
+    
+    font-size:  3em;
     transform: translateY(-50%);
     color: #8687E7;
     background-color:#e5e5e5;
@@ -122,3 +126,175 @@ margin:0.3em;
     gap: 0.5em;
 }
  
+
+#input-dialogue{
+    width: 100%;
+    max-width: 500px;
+    min-width: 380px;
+    background-color: #363636;
+    border-radius: 1em;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-30px);
+    height: 40%;
+    
+    justify-content: space-between;
+    
+}
+ #input-dialogue i{
+  font-size: 1.2em;
+ }
+#input-dialogue input{
+
+ background-color: inherit;
+ border-radius: 0.3em;
+ border: none;
+ padding: 1em 0.5em;
+ color: #e5e5e5;
+ outline: none;
+ width: 100%;
+ max-width: 500px;
+ border-bottom: 1px solid  transparent;
+  
+ 
+  
+
+}
+#input-dialogue input:focus{
+    outline: none;
+    border-bottom: 1px solid grey;
+}
+#input-dialogue>:first-child{
+    font-size: 1.3em;
+    width: 100%;
+    
+}
+#input-dialogue textarea{
+    background-color:inherit;
+    width: 100%;
+    max-width: 500px;
+    height: 50px;
+    border-radius: 0.5em;
+    padding: 1em 0.5em;
+    border: none;
+    border-bottom: 1px solid  transparent;
+    outline: none;
+    
+   
+     
+}
+ #input-dialogue textarea:focus{
+    border-bottom: 1px solid  grey; 
+}
+ 
+.taskTittle,.tittle-decription-txt-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.task-setting{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3em;
+}
+.task-setting>:last-child{
+    flex-grow: 0.4;
+    text-align: right;
+    color: #8687E7;
+  
+    
+}
+ #dialogue-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    background-color: rgba(0, 0, 0, 0.4);
+    
+    display: none;
+     
+ 
+ }
+ #dialog i{
+  font-size: 1.2em;
+ }
+
+  
+  ::placeholder{
+    font-size:1em;
+  }
+  .close-dialoge-container{
+    display:  flex;
+    justify-content: space-between;
+  }
+  
+
+  .time-input{
+    width: 50px;
+  }
+
+  #datepicker{
+background-color: #8687E7;
+ 
+  }
+ #dialog{
+width: 50%;
+max-width: 300px;
+padding: 0;
+border: none;
+outline: none;
+background-color:#363636;
+outline: none;
+border: none;
+border-radius: 1em;
+padding:  1em;
+transform: translate(60px, -40px);
+ 
+ 
+
+ 
+
+  }
+  #dialog::-webkit-scrollbar{
+    display: none;
+  }
+  #dialog i{
+    padding: 0.5em 0.2em;
+  }
+  #datetime-local{
+    width: 100%;
+    padding: 2em 0em;
+    background-color: transparent ;
+    
+    border: none;
+    outline: none;
+    /* color: #363636; */
+  }
+  .dialogue-controls{
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (max-width:500px) {
+    #dialog{
+        transform: translate(0,-40px)
+    }
+  }
+  
+ 
+ 
+#dialog input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5); 
+  cursor: pointer;
+  
+}
+#dialog input:hover[type="datetime-local"]::-webkit-calendar-picker-indicator{
+  filter: invert(1);
+}
