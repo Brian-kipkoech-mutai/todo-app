@@ -12,7 +12,7 @@
 body{
     margin: 0;
     font-size: 16px;
-    height: 100vh;
+    min-height: 100vh;
     overflow-y: auto;
 } 
 .ui{
@@ -111,6 +111,7 @@ margin:0.3em;
     color: #8687E7;
     background-color:#e5e5e5;
     border-radius: 50%;
+    z-index: 0;
     
  }
  .icons-label{
@@ -130,7 +131,7 @@ margin:0.3em;
 #input-dialogue{
     width: 100%;
     max-width: 500px;
-    min-width: 380px;
+    min-width: 370px;
     background-color: #363636;
     border-radius: 1em;
     border: none;
@@ -139,6 +140,9 @@ margin:0.3em;
     align-items: center;
     transform: translateY(-30px);
     height: 40%;
+    padding:1em;
+     
+     
     
     justify-content: space-between;
     
@@ -242,12 +246,19 @@ margin:0.3em;
   }
 
   #datepicker{
-background-color: #8687E7;
+ border: none;
+ background-color: transparent;
+ flex-grow: 1;
+  outline: none;
+  
+  
+
+
  
   }
  #dialog{
-width: 50%;
-max-width: 300px;
+width: 100%;
+max-width: 350px;
 padding: 0;
 border: none;
 outline: none;
@@ -256,12 +267,10 @@ outline: none;
 border: none;
 border-radius: 1em;
 padding:  1em;
-transform: translate(60px, -40px);
- 
- 
+transform: translate(0px, -40px);
+/* position: relative; */
 
  
-
   }
   #dialog::-webkit-scrollbar{
     display: none;
@@ -269,32 +278,74 @@ transform: translate(60px, -40px);
   #dialog i{
     padding: 0.5em 0.2em;
   }
-  #datetime-local{
+  .datepicker-default{
     width: 100%;
-    padding: 2em 0em;
-    background-color: transparent ;
-    
+    padding: 1em 0em;
+    background-color: #8687E70a ;
+     border-radius: 0.5em;
     border: none;
     outline: none;
-    /* color: #363636; */
+    display: flex;
+    
   }
+  
   .dialogue-controls{
     display: flex;
     justify-content: space-between;
+    
+    
   }
   @media (max-width:500px) {
     #dialog{
-        transform: translate(0,-40px)
+        transform: translate(0,-40px);
+     
     }
+    #input-dialogue{
+      border-radius: 0.5em;
+       
+       
+    }
+    
   }
   
  
  
-#dialog input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.5); 
-  cursor: pointer;
+ 
+.bootstrap-datetimepicker-widget {
+  max-width: 350px;
+  font-family: 'mona Sans';
+  
+  
   
 }
-#dialog input:hover[type="datetime-local"]::-webkit-calendar-picker-indicator{
-  filter: invert(1);
+.bootstrap-datetimepicker-widget .picker-switch {
+   
+  font-weight: 400;
 }
+.bootstrap-datetimepicker-widget .glyphicon {
+  font-size: 1em;  
+    font-weight: 100;
+}
+.bootstrap-datetimepicker-widget thead th {
+  font-weight: 200;
+}
+.bootstrap-datetimepicker-widget thead th:first-child:last-child{
+
+}
+ 
+.bootstrap-datetimepicker-widget thead th:first-child,.bootstrap-datetimepicker-widget thead th:last-child{
+   color: #FF4949;
+}
+.bootstrap-datetimepicker-widget tbody td:not(.today) {
+  background-color: #272727;
+  
+   
+}
+.bootstrap-datetimepicker-widget tbody td {
+   
+}
+td.day{
+    
+}
+
+ 

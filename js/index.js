@@ -168,11 +168,31 @@ const indexPageData=[
     onComplete:close
   })
   function close(){
-    dateDialogue.close()
+     
   }
    
  }
  const close_save_dateDialogue=()=>{
    
-  dateDialogue.close()
+  
  }  
+
+ $(document).ready(function() {
+  $('#datepicker').datetimepicker(
+    {
+      minDate:new Date(),
+      showTodayButton: true,
+      showClose: true,
+       
+    }
+  );
+  
+});
+ 
+
+document.getElementById('datepicker').addEventListener('focus', function() {
+  this.blur();  
+});
+
+
+ 
