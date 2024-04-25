@@ -5,22 +5,26 @@
 *{
     box-sizing: border-box;
     font-family: 'mona Sans';
-    color:white;
+   
     
 }
-
+ 
 body{
     margin: 0;
     font-size: 16px;
-    min-height: 100vh;
-    overflow-y: auto;
+    padding: 0;
+   
+     
+  
+    
 } 
 .ui{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height:100svh;
     background-color:#121212 ;
+    margin: 0;
      
     
 }
@@ -34,8 +38,8 @@ svg{
     padding: 0 1em;
  }
 #profile-picture{
-    width:2em;
-    height: 2em;
+    width:1.5em;
+    height: 1.5em;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -91,7 +95,7 @@ margin:0.3em;
     /* font-size:max(1.2em,2vw) ; */
     background-color: #363636;
     padding:0 0.3em;
-    font-size: 1.3em
+    font-size: 1.3em;
      
     
  }
@@ -179,7 +183,7 @@ margin:0.3em;
     background-color:inherit;
     width: 100%;
     max-width: 500px;
-    height: 50px;
+    height: 70px;
     border-radius: 0.5em;
     padding: 1em 0.5em;
     border: none;
@@ -211,6 +215,12 @@ margin:0.3em;
   
     
 }
+.task_filled_info{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #e5e5e5;
+}
  #dialogue-box{
     position: fixed;
     top: 50%;
@@ -222,6 +232,7 @@ margin:0.3em;
     justify-content: center;
     align-items:  center;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index:2;
     
     display: none;
      
@@ -250,6 +261,7 @@ margin:0.3em;
  background-color: transparent;
  flex-grow: 1;
   outline: none;
+  width: 100%;
   
   
 
@@ -258,7 +270,7 @@ margin:0.3em;
   }
  #dialog{
 width: 100%;
-max-width: 350px;
+max-width: 390px;
 padding: 0;
 border: none;
 outline: none;
@@ -267,8 +279,27 @@ outline: none;
 border: none;
 border-radius: 1em;
 padding:  1em;
-transform: translate(0px, -40px);
-/* position: relative; */
+ 
+ 
+position: relative;
+ 
+
+  }
+  .datetimeoutercontainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+   display: none;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10em;
+  
+   
+ 
 
  
   }
@@ -286,6 +317,7 @@ transform: translate(0px, -40px);
     border: none;
     outline: none;
     display: flex;
+    color:#8687E7;
     
   }
   
@@ -295,6 +327,132 @@ transform: translate(0px, -40px);
     
     
   }
+  #category{
+    display: flex;
+    color: #F8F9FA;
+    flex-direction: column;
+    max-width: 380px;
+    align-items: center;
+    gap: 1em;
+    background-color: #363636;
+    padding: 1em 0;
+    border-radius: 1em;
+  }
+ #category-top::after{
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: grey;
+  display: block;
+  margin-top: 0.5em;
+ }
+ #category-top{
+  width: 100%;
+  text-align: center;
+ }
+ #category-middle{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+   
+ }
+ #category-middle section{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  width: 7em;
+  gap: 0.5em;
+  /* background-color: red; */
+ }
+ #category-middle section label{
+  font-size: 0.8em;
+  font-weight: 400;
+ }
+ #category-middle section i{
+  font-size: 1.3em;
+  height: 2em;
+  width: 2em;
+  border-radius: 5px;
+  color: #363636;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ #category-middle section i:hover{
+  background: #8687E7;
+ }
+  
+
+ #add-category-btn{
+  background-color: #8687E7;
+  width: 80%;
+  padding: 0.7em 2em;
+  text-align: center;
+  border-radius: 0.5em;
+  cursor: pointer;
+ }
+ #personal-tasks i{
+  background-color: #add8e6; /* Light blue */
+}
+
+#work-tasks  i{
+  background-color: #90ee90; /* Light green */
+}
+
+#shoppin i{
+  background-color: #ffa07a; /* Light orange */
+}
+#health i{
+  background-color: #c9a0dc; /* Light purple */
+}
+
+#education i{
+  background-color: #ffff99; /* Light yellow */
+}
+
+#finance i{
+  background-color: #87ceeb; /* Light teal */
+}
+
+#entertainment i{
+  background-color: #ffb6c1; /* Light pink */
+}
+
+#home i{
+  background-color: #f4a460; /* Light brown */
+}
+
+#family i{
+  background-color: #ff6347; /* Light red */
+}
+
+#social i{
+  background-color: #e0ffff; /* Light cyan */
+}
+
+#sports i{
+  background-color: #d3d3d3; /* Light grey */
+}
+
+#person i{
+  background-color: #afeeee; /* Light turquoise */
+}
+
+#shopping i{
+  background-color: #FFA500; /* Light orange */
+}
+
+#create-task i{
+  background-color: #FFA500
+}
+
+
+
+
+
+
   @media (max-width:500px) {
     #dialog{
         transform: translate(0,-40px);
@@ -305,6 +463,7 @@ transform: translate(0px, -40px);
        
        
     }
+ 
     
   }
   
@@ -312,8 +471,13 @@ transform: translate(0px, -40px);
  
  
 .bootstrap-datetimepicker-widget {
-  max-width: 350px;
+  max-width:calc(100vw);
+
+
   font-family: 'mona Sans';
+  border-radius: 0.8em;
+  transform: translate(-20px,20px);
+  
   
   
   
@@ -321,31 +485,80 @@ transform: translate(0px, -40px);
 .bootstrap-datetimepicker-widget .picker-switch {
    
   font-weight: 400;
+
+}
+.bootstrap-datetimepicker-widget .picker-switch:hover {
+   
+background-color:#8687E70f;
+
+
 }
 .bootstrap-datetimepicker-widget .glyphicon {
   font-size: 1em;  
-    font-weight: 100;
+ color: #e5e5e5;
+}
+.bootstrap-datetimepicker-widget .glyphicon:hover{
+  background-color:hsla(239, 67%, 72%, 0.059);
+  color: #8687E7;
 }
 .bootstrap-datetimepicker-widget thead th {
-  font-weight: 200;
+  font-weight: 300;
 }
-.bootstrap-datetimepicker-widget thead th:first-child:last-child{
-
+  
+.bootstrap-datetimepicker-widget .timepicker-hour:hover,
+.bootstrap-datetimepicker-widget .timepicker-minute:hover {
+  background-color: #8687E7;
+  color: #e5e5e5;
+}
+ th.picker-switch{
+   color: #8687E7
+ }
+.bootstrap-datetimepicker-widget thead th:first-child,.bootstrap-datetimepicker-widget thead th:last-child{
+   color: #ff0b0b;
+}
+.bootstrap-datetimepicker-widget tbody td:not(.today):hover ,
+.bootstrap-datetimepicker-widget thead th.prev:hover,
+.bootstrap-datetimepicker-widget thead th.next:hover,
+.bootstrap-datetimepicker-widget thead th.picker-switch:hover ,
+.bootstrap-datetimepicker-widget thead th.switch:hover,
+.month:hover,
+.year:hover,
+.time:hover,
+span.timepicker-hour:hover,
+span.timepicker-minute:hover,
+.btn,
+.btn:hover
+ 
+{
+ 
+  background:#8687E70f;
+  color: #8687E7;
+   
 }
  
-.bootstrap-datetimepicker-widget thead th:first-child,.bootstrap-datetimepicker-widget thead th:last-child{
-   color: #FF4949;
+.bootstrap-datetimepicker-widget .month.active {
+  background-color: #8687E7;
+ 
 }
-.bootstrap-datetimepicker-widget tbody td:not(.today) {
-  background-color: #272727;
+.bootstrap-datetimepicker-widget .month:not(.active):hover{
+  background:#8687E70f;
+}
+
   
-   
+.bootstrap-datetimepicker-widget tbody td.today {
+   background-color: #8687E7;
 }
-.bootstrap-datetimepicker-widget tbody td {
-   
+.bootstrap-datetimepicker-widget tbody td.today:hover {
+  background-color: #797bdf;
 }
 td.day{
     
+  
+    
+   border-radius: 20px;
 }
 
  
+body::-webkit-scrollbar{
+  display: none;
+}

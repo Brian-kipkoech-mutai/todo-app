@@ -128,7 +128,7 @@ const indexPageData=[
   </p>
   `
 ]
- 
+   
  function  addTask(){
  dialogueBox.style.display='flex'
    gsap.from(  ['#input-dialogue'],{
@@ -147,7 +147,7 @@ const indexPageData=[
  }
   
  function openDateInput(){
-    dateDialogue.showModal()
+  $('.datetimeoutercontainer').css('display','flex')
     gsap.fromTo(dateDialogue,{
       opacity:0,
       width:0,
@@ -155,8 +155,9 @@ const indexPageData=[
     },
     {
       opacity:1,
-      width:'300px',
-      duration:0.5
+      width:'100%',
+      maxWidth: "390px",
+      duration:0.7
     })
  }
  function closeDialog(){
@@ -167,13 +168,30 @@ const indexPageData=[
     duration:0.5,
     onComplete:close
   })
-  function close(){
-     
-  }
    
  }
- const close_save_dateDialogue=()=>{
+
+ function close(){
+  $('.datetimeoutercontainer').css('display','none')
+}
+
+ function close_save_dateDialogue(){
+  const task_time=$('#datepicker').val()
    
+  $('#task-time').html(task_time)
+
+   let tm=gsap.timeline()
+  tm.to(dateDialogue,{
+    opacity:0,
+    width:50,
+    duration:0.5,
+    onComplete:close
+  })
+  tm.from('#task-time',{
+    opacity:0,
+    duration:0.5,
+    x:-20
+  })
   
  }  
 
@@ -183,6 +201,8 @@ const indexPageData=[
       minDate:new Date(),
       showTodayButton: true,
       showClose: true,
+      ignoreReadonly: true
+       
        
     }
   );
@@ -190,9 +210,27 @@ const indexPageData=[
 });
  
 
-document.getElementById('datepicker').addEventListener('focus', function() {
-  this.blur();  
-});
+
+  
+
+  $('#category-middle section i').on('click',function(){
+let originalColors={}
+
+  $('#category-middle section i').each(function(i){
+   
+     
+    originalColors[i]=$(this).css('background-color');
+  })
+
+  console.log(Object.values(originalColors));
+ 
+   $('#category-middle section i').each(function(i){
+    $(this).css('background-color',originalColors[i])
+   }) 
+
+    $(this).css('background-color','#8687E7')
+
+  })
 
 
  

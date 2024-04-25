@@ -30,21 +30,94 @@
     </section>
     <section class="middle"  >
 
-         
-        <div id="dialog" >
-             <div class="datepicker-default">
-                <input type="text" id="datepicker" placeholder=" Pick time and date"  >
-                 <label for="datepicker">
-                    <i class="fas fa-calendar" id="calender_icon"></i>
-                 </label>
-             </div>
-            <div class="dialogue-controls"> 
-                
-                <i class="fas fa-times" onclick="closeDialog()"  ></i>
-                <i class="fas fa-save" onclick="close_save_dateDialogue()"></i>
-             </div>
-            </div>
+  <div id="category">
+    <section id="category-top">Choose category</section>
 
+    <section id="category-middle">
+        <section id="personal-tasks">
+            <label for="personal-tasks">Personal</label>
+            <i class="fas fa-list-alt" ></i>
+        </section>
+        
+        <section id="work-tasks">
+            <label for="work-tasks">Work </label>
+            <i class="fas fa-briefcase"></i>
+        </section>
+        
+        <section id="shopping">
+            <label for="shopping">Shopping</label>
+            <i class="fas fa-shopping-cart"></i>
+        </section>
+        
+        <section id="health">
+            <label for="health">Health</label>
+            <i class="fas fa-dumbbell"></i>
+        </section>
+        
+        <section id="education">
+            <label for="education">Education</label>
+            <i class="fas fa-graduation-cap"></i>
+        </section>
+        
+        <section id="finance">
+            <label for="finance">Finance</label>
+            <i class="fas fa-money-bill-wave"></i>
+        </section>
+        
+        <section id="entertainment">
+            <label for="entertainment">Entertainment</label>
+            <i class="fas fa-gamepad"></i>
+        </section>
+        
+        <section id="home">
+            <label for="home">Home</label>
+            <i class="fas fa-home"></i>
+        </section>
+        
+        <section id="family">
+            <label for="family">Family</label>
+            <i class="fas fa-users"></i>
+        </section>
+        
+        <section id="social">
+            <label for="social">Social</label>
+            <i class="fas fa-comments"></i> 
+        </section>
+        <section id="sports">
+            <label for="sports">Sports</label>
+            <i class="fas fa-futbol"></i>  
+        </section>
+        <section id="create-task">
+            <label for="create-task">Create Task</label>
+            <i class="fas fa-plus"></i>
+        </section>
+         
+    </section>
+    <section id="add-category-btn"> Add category</section>
+
+  </div>
+
+
+
+
+
+          <div class="datetimeoutercontainer">
+            <div id="dialog" >
+                <div class="datepicker-default">
+                   <input type="text" id="datepicker" placeholder=" Pick time and date"  readonly   >
+                    <label for="datepicker">
+                       <i class="fas fa-calendar" id="calender_icon"></i>
+                    </label>
+                </div>
+               <div class="dialogue-controls"> 
+                   
+                   <i class="fas fa-times" onclick="closeDialog()"  ></i>
+                   <i class="fas fa-save" onclick="close_save_dateDialogue()"></i>
+                </div>
+               </div>
+   
+          </div>
+ 
 
        <div id="dialogue-box">
         <div id="input-dialogue" >
@@ -54,6 +127,12 @@
             </section>
             <section class="tittle-decription-txt-container">
                  <textarea name="Description" id="text-decription-txt-area"  placeholder="Task Description"></textarea>
+            </section>
+            <section class="task_filled_info">
+                <div id="task-time">
+                </div>
+                <div id="category-value">helo</div>
+                <div id="">heloo</div>
             </section>
             <section class="task-setting">
                 <i class="fas fa-clock" onclick="openDateInput()"></i>
@@ -88,9 +167,6 @@
     </section>
   </div>
  </body>
- 
-<div id="img">
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
