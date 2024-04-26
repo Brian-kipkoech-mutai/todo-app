@@ -157,7 +157,7 @@ const indexPageData=[
       opacity:1,
       width:'100%',
       maxWidth: "390px",
-      duration:0.7
+      duration:0.5
     })
  }
  function closeDialog(){
@@ -211,26 +211,67 @@ const indexPageData=[
  
 
 
-  
+  let  categoriesValue=''
+  let chosenCategoriesColor=0
+  let originalColors=[
+    '#add8e6',
+    '#90ee90',
+    '#ffa07a',
+    '#c9a0dc',
+    '#ffff99',
+    '#87ceeb',
+    '#ffb6c1',
+    '#f4a460',
+    '#ff6347',
+    '#e0ffff',
+    '#d3d3d3',
+    '#afeeee'
+      ]
 
   $('#category-middle section i').on('click',function(){
-let originalColors={}
-
-  $('#category-middle section i').each(function(i){
-   
-     
-    originalColors[i]=$(this).css('background-color');
-  })
-
-  console.log(Object.values(originalColors));
  
-   $('#category-middle section i').each(function(i){
+
+   $('#category-middle section i').each(function(i){ 
     $(this).css('background-color',originalColors[i])
    }) 
 
     $(this).css('background-color','#8687E7')
+     categoriesValue=$(this).attr('value')
+     chosenCategoriesColor=$(this).index()
 
   })
 
+const closeCategories=()=>{
+  $('#category').css('display','none')
+}
+const close_save_Categories=()=>{
+  console.log('default color', originalColors[chosenCategoriesColor]);
+        $('#category-value').html(categoriesValue)
+        $('#category-value').css({
+          'color':originalColors[chosenCategoriesColor]
+        })
+        gsap.from('#category-value',{
+          opacity:0,
+          duration:0.5,
+          x:-20
+        })
+         
+  $('#category').css({
+    'display':'none'
+})
 
- 
+}
+const openCategories=()=>{
+  $('#category').css({
+    'display':'flex'
+})
+const tl=gsap.timeline()
+
+ tl.from('#category',{
+  
+   y:-200,
+   opacity:0,
+  duration:0.5
+ })
+  
+}

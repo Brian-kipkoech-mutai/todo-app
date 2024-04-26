@@ -31,69 +31,73 @@
     <section class="middle"  >
 
   <div id="category">
-    <section id="category-top">Choose category</section>
+
+    <section id="category-top">
+        <i class="fas fa-times" onclick="closeCategories()"  ></i>
+         <span>Choose category</span>
+        </section>
 
     <section id="category-middle">
         <section id="personal-tasks">
             <label for="personal-tasks">Personal</label>
-            <i class="fas fa-list-alt" ></i>
+            <i class="fas fa-list-alt" value="Personal"></i>
         </section>
         
         <section id="work-tasks">
             <label for="work-tasks">Work </label>
-            <i class="fas fa-briefcase"></i>
+            <i class="fas fa-briefcase" value="Work"></i>
         </section>
         
         <section id="shopping">
             <label for="shopping">Shopping</label>
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart" value=""></i>
         </section>
         
         <section id="health">
             <label for="health">Health</label>
-            <i class="fas fa-dumbbell"></i>
+            <i class="fas fa-dumbbell" value="Health"></i>
         </section>
         
         <section id="education">
             <label for="education">Education</label>
-            <i class="fas fa-graduation-cap"></i>
+            <i class="fas fa-graduation-cap" value="Education"></i>
         </section>
         
         <section id="finance">
             <label for="finance">Finance</label>
-            <i class="fas fa-money-bill-wave"></i>
+            <i class="fas fa-money-bill-wave"value="Finance" ></i>
         </section>
         
         <section id="entertainment">
             <label for="entertainment">Entertainment</label>
-            <i class="fas fa-gamepad"></i>
+            <i class="fas fa-gamepad" value="Entertainment" ></i>
         </section>
         
         <section id="home">
             <label for="home">Home</label>
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home" value="Home"></i>
         </section>
         
         <section id="family">
             <label for="family">Family</label>
-            <i class="fas fa-users"></i>
+            <i class="fas fa-users" value="Family"></i>
         </section>
         
         <section id="social">
             <label for="social">Social</label>
-            <i class="fas fa-comments"></i> 
+            <i class="fas fa-comments"value="Social" ></i> 
         </section>
         <section id="sports">
             <label for="sports">Sports</label>
-            <i class="fas fa-futbol"></i>  
+            <i class="fas fa-futbol" value="Sports"></i>  
         </section>
         <section id="create-task">
             <label for="create-task">Create Task</label>
-            <i class="fas fa-plus"></i>
+            <i class="fas fa-plus" ></i>
         </section>
          
     </section>
-    <section id="add-category-btn"> Add category</section>
+    <section id="add-category-btn" onclick="close_save_Categories()"> Add category</section>
 
   </div>
 
@@ -136,7 +140,7 @@
             </section>
             <section class="task-setting">
                 <i class="fas fa-clock" onclick="openDateInput()"></i>
-                <i class="fas fa-tag"></i>
+                <i class="fas fa-tag" onclick="openCategories()"></i>
                 <i class="fas fa-flag"></i>
                 <i class="fas fa-paper-plane"></i>
             </section>
