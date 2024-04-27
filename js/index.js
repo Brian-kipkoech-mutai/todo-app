@@ -155,8 +155,8 @@ const indexPageData=[
     },
     {
       opacity:1,
-      width:'100%',
-      maxWidth: "390px",
+      width: 'calc(100vw - 1.5em)',
+      maxWidth: "400px",
       duration:0.5
     })
  }
@@ -235,20 +235,22 @@ const indexPageData=[
     $(this).css('background-color',originalColors[i])
    }) 
 
+    chosenCategoriesColor=$(this).css('background-color')
+    
     $(this).css('background-color','#8687E7')
      categoriesValue=$(this).attr('value')
-     chosenCategoriesColor=$(this).index()
+      
 
   })
 
 const closeCategories=()=>{
-  $('#category').css('display','none')
+  $('#category-container').css('display','none')
 }
 const close_save_Categories=()=>{
   console.log('default color', originalColors[chosenCategoriesColor]);
         $('#category-value').html(categoriesValue)
         $('#category-value').css({
-          'color':originalColors[chosenCategoriesColor]
+          'color':chosenCategoriesColor
         })
         gsap.from('#category-value',{
           opacity:0,
@@ -256,14 +258,14 @@ const close_save_Categories=()=>{
           x:-20
         })
          
-  $('#category').css({
+  $('#category-container').css({
     'display':'none'
 })
 
 }
 const openCategories=()=>{
-  $('#category').css({
-    'display':'flex'
+  $('#category-container').css({
+    'display':'block'
 })
 const tl=gsap.timeline()
 
@@ -274,4 +276,37 @@ const tl=gsap.timeline()
   duration:0.5
  })
   
+}
+
+const cancelPriority=()=>{
+  gsap.to('#priority',{
+    y:-200,
+    opacity:0,
+   duration:0.5,
+   onComplete:()=>$('.priority-container').css('display','none')
+  })
+   
+
+}
+const savePriority=()=>{
+  
+  gsap.to('#priority',{
+    y:-200,
+    opacity:0,
+   duration:0.5,
+   onComplete:()=>$('.priority-container').css('display','none')
+  })
+}
+const openPrioritiesWidget=()=>{
+  $('.priority-container').css('display','block')
+  gsap.fromTo('#priority',{
+    y:-200,
+    opacity:0,
+   
+  },{
+    y:0,
+    opacity:1,
+   duration:0.5
+
+  })
 }
