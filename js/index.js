@@ -288,13 +288,34 @@ const cancelPriority=()=>{
    
 
 }
+let superscript = {
+  "1": "<span><span>1</span><sup>st</sup></span>",
+  "2": "<span><span>2</span><sup>nd</sup></span>",
+  "3": "<span><span>3</span><sup>rd</sup></span>",
+  "4": "<span><span>4</span><sup>th</sup></span>",
+  "5": "<span><span>5</span><sup>th</sup></span>",
+  "6": "<span><span>6</span><sup>th</sup></span>",
+  "7": "<span><span>7</span><sup>th</sup></span>",
+  "8": "<span><span>8</span><sup>th</sup></span>",
+  "9": "<span><span>9</span><sup>th</sup></span>",
+  "10": "<span>1<span>10</span><sup>th</sup></span>"
+};
+let priorityValue=0;
 const savePriority=()=>{
-  
+    
   gsap.to('#priority',{
     y:-200,
     opacity:0,
    duration:0.5,
-   onComplete:()=>$('.priority-container').css('display','none')
+   onComplete:()=> {
+    $('.priority-container').css('display','none')
+    $('#priority-value-txt').html(  `${superscript[priorityValue]} priority`)
+    gsap.from('#priority-value-txt',{
+      x:-20,
+      opacity:0,
+      duration:0.5
+    })
+   }
   })
 }
 const openPrioritiesWidget=()=>{
@@ -310,3 +331,11 @@ const openPrioritiesWidget=()=>{
 
   })
 }
+$('.flag-section').on('click',function(){
+  $('.flag-section').each(function(){
+     $(this).css('background-color','#272727');
+  })
+
+      $(this).css('background-color','#8687E7');
+      priorityValue=$(this).attr('value');
+})
