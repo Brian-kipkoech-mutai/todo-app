@@ -679,3 +679,15 @@ td.day{
 body::-webkit-scrollbar{
   display: none;
 }
+
+
+#search-task{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  background-color: #363636;
+  padding: 1em;
+}
+#search-task input{
+  background-color:  transparent;
+}
