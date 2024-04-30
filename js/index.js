@@ -132,9 +132,8 @@ const indexPageData=[
  function  addTask(){
  dialogueBox.style.display='flex'
    gsap.from(  ['#input-dialogue'],{
-  //  opacity:0,
-  width:'0',
-   height:'0%',
+   opacity:0,
+    y:'40%',
     duration:0.5
    }
    )
