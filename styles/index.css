@@ -5,6 +5,7 @@
 *{
     box-sizing: border-box;
     font-family: 'mona Sans';
+    user-select: none;
    
     
 }
@@ -66,6 +67,16 @@ svg{
     overflow: auto;
       
 }
+.middle ::-webkit-scrollbar{
+   background-color: #1d1d1d;
+   width: 5px;
+   border-radius: 0.5em;
+}
+.middle ::-webkit-scrollbar-thumb{
+  background-color:#272727;
+  border-radius: 0.5em;
+}
+
  #task-container>:last-child{
  margin-bottom: 1em;
   
@@ -717,7 +728,28 @@ body::-webkit-scrollbar{
  .task-btn{
    display: flex;
    justify-content: space-between;
-
+   cursor: pointer;
+   
+ }
+ .task-btn>:nth-child(n):hover{
+  background-color: #8687E7;
+ }
+ .task-btn>:nth-child(n){
+  
+  background-color: #1d1d1d;
+  border-left: 1px solid #444444;
+  border-bottom: 1px solid #444444;
+ }
+ .task-btn>:nth-child(n):active{
+  
+  background-color: #1d1d1d;
+  border-right: 1px solid #444444;
+  border-top: 1px solid #444444;
+  border-left: none;
+  border-bottom: none;
+ }
+ .task-btn>:last-child{
+  margin-right: 6px;
  }
 #search-task :first-child{
   font-size: 1.3em;
@@ -731,25 +763,14 @@ body::-webkit-scrollbar{
      width: fit-content;
      height: 2.5em;
      justify-content: start;
-     
      color: #F8F9FA;
      border-radius: 0.5em;
-     
-      
-
 }
 #task-container{
   display: flex;
   flex-direction: column;
   gap: 1em;
   overflow: auto;
-       
-  
- 
-  
-
-
-   
 }
 #task-cell-container{
   background-color:#1d1d1d;
@@ -761,7 +782,7 @@ body::-webkit-scrollbar{
   align-items: center;
   gap: 0.5em;
   padding-bottom: 0.3em;
-  
+  cursor: pointer;
   /* border-left: 1px solid #444444; */
   border-right: 1px solid #444444;
   border-top : 1px solid #444444;
@@ -800,8 +821,10 @@ body::-webkit-scrollbar{
   gap: 0.4em;
   padding: 0.3em 0.5em;
   border-radius: 0.2em;
+  user-select: none;
+
 }
-.taskCell-bottom-right-data>:nth-child(n) i{
+.taskCell-bottom-right-data>:nth-child(1) i{
    color: #272727;
 }
 .taskCell-bottom-right-data>:nth-child(1){
