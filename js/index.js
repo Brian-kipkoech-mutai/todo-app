@@ -133,9 +133,10 @@ const indexPageData=[
  dialogueBox.style.display='flex'
    gsap.from(  ['#input-dialogue'],{
    opacity:0,
-    y:'40%',
-    duration:0.5
+    
+    
    }
+    
    )
  }
 
@@ -338,3 +339,71 @@ $('.flag-section').on('click',function(){
       $(this).css('background-color','#8687E7');
       priorityValue=$(this).attr('value');
 })
+const dataSet=[];
+const taskIcons={
+  Personal:'<i class="fas fa-list-alt" value="Personal"></i>',
+  Work:'<i class="fas fa-briefcase" value="Work"></i>',
+  Shopping:'<i class="fas fa-shopping-cart" value="Shopping"></i>',
+  Health:'<i class="fas fa-dumbbell" value="Health"></i>',
+  Education:'<i class="fas fa-graduation-cap" value="Education"></i>',
+  Finance:'<i class="fas fa-money-bill-wave"value="Finance" ></i>',
+  leisure:'<i class="fas fa-gamepad" value="leisure" ></i>',
+  Home:'<i class="fas fa-home" value="Home"></i>',
+  Family:'<i class="fas fa-users" value="Family"></i>',
+  Social:'<i class="fas fa-comments"value="Social" ></i>',
+  sports:'<i class="fas fa-futbol" value="Sports"></i> '
+}
+const handle_task_submit=()=>{
+     const taskTitle= $("#taskTittleInput").val();
+     const taskDescription = $('#text-decription-txt-area').val();
+     const taskDate = $("#datepicker").val();
+     const  taskPriority = priorityValue;
+     const category=categoriesValue;
+       console.log('taskDate',taskDate);
+     const  taskTime=taskDate.match(/\s\d{1,2}:\d{2}\s+\w+/)[0]
+   
+   const dataCapture ={
+    taskTitle,
+    taskDescription,
+    taskDate,
+    taskTime,
+    taskPriority,
+    category
+   }
+   dataSet.push(dataCapture);
+   const todayDataSet=dataSet.filter(({taskDate})=>new Date().toLocaleDateString()===taskDate.match(/^\d{2}\/\d{2}\/\d{4}/)[0].trim().replace(/0/,'').replace(/0/,''))
+    let html=''
+   todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
+   const cellTemplate = `<section id="task-cell-container"    >
+   <div>
+       <div class="circle"></div>
+   </div>
+   <div  class="task-detail-container">
+         <section>${taskTitle}</section>
+         <section class="taskCell-bottom-container">
+           <span>today At  ${taskTime}</span>
+           <section class="taskCell-bottom-right-data">
+               <section style="background-color:${chosenCategoriesColor};">
+                     ${taskIcons[category]}
+                   <span>${category}</span>
+               </section>
+               <section>
+                   <i class="fas fa-flag"  ></i>
+                   <span>${ superscript[taskPriority]}<span>
+               </section>
+           </section>
+         </section>
+   </div>
+</section>`
+
+ html+=cellTemplate
+     
+   })
+   console.log(html);
+   $('#task-container').html(html);
+
+     closeDialogue()
+      
+    
+      
+ }
