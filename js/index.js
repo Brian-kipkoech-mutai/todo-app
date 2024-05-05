@@ -1,7 +1,9 @@
+ import dateFunction from "./helperFunctions.js";
 const dialogueBox=document.getElementById('dialogue-box');
 const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
 const dateInput=document.getElementById('datetime-local');
+
 
 const indexPageData=[
   `
@@ -128,8 +130,10 @@ const indexPageData=[
   </p>
   `
 ]
-   
- function  addTask(){
+     
+
+
+   function  addTask(){
  dialogueBox.style.display='flex'
    gsap.from(  ['#input-dialogue'],{
    opacity:0,
@@ -212,7 +216,7 @@ const indexPageData=[
 
 
   let  categoriesValue=''
-  let chosenCategoriesColor=0
+  let chosenCategoriesColor=''
   let originalColors=[
     '#add8e6',
     '#90ee90',
@@ -227,6 +231,20 @@ const indexPageData=[
     '#d3d3d3',
     '#afeeee'
       ]
+      const taskBackground = {
+        'Personal': '#add8e6',
+        'Work': '#90ee90',
+        'Shopping': '#ffa07a',
+        'Health': '#c9a0dc',
+        'Education': '#ffff99',
+        'Finance': '#87ceeb',
+        'leisure': '#ffb6c1',
+        'Home': '#f4a460',
+        'Family': '#ff6347',
+        'Social': '#e0ffff',
+        'Sports': '#d3d3d3'
+    };
+    
 
   $('#category-middle section i').on('click',function(){
  
@@ -351,7 +369,7 @@ const taskIcons={
   Home:'<i class="fas fa-home" value="Home"></i>',
   Family:'<i class="fas fa-users" value="Family"></i>',
   Social:'<i class="fas fa-comments"value="Social" ></i>',
-  sports:'<i class="fas fa-futbol" value="Sports"></i> '
+  Sports:'<i class="fas fa-futbol" value="Sports"></i> '
 }
 const handle_task_submit=()=>{
      const taskTitle= $("#taskTittleInput").val();
@@ -370,10 +388,13 @@ const handle_task_submit=()=>{
     taskPriority,
     category
    }
-   dataSet.push(dataCapture);
-   const todayDataSet=dataSet.filter(({taskDate})=>new Date().toLocaleDateString()===taskDate.match(/^\d{2}\/\d{2}\/\d{4}/)[0].trim().replace(/0/,'').replace(/0/,''))
+   dataSet.unshift(dataCapture);
+   // working  on the bellow line  tomorrow  it coursing inconsistency the issues may  lie on the toLocal date string we are yet to find out
+   const todayDataSet=dataSet.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
-   todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
+    todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
+ 
+    console.log(chosenCategoriesColor);
    const cellTemplate = `<section id="task-cell-container"    >
    <div>
        <div class="circle"></div>
@@ -383,7 +404,7 @@ const handle_task_submit=()=>{
          <section class="taskCell-bottom-container">
            <span>today At  ${taskTime}</span>
            <section class="taskCell-bottom-right-data">
-               <section style="background-color:${chosenCategoriesColor};">
+               <section style="background-color:${taskBackground[category]};" >
                      ${taskIcons[category]}
                    <span>${category}</span>
                </section>
@@ -399,11 +420,27 @@ const handle_task_submit=()=>{
  html+=cellTemplate
      
    })
-   console.log(html);
-   $('#task-container').html(html);
+    
+
+   $('#task-container').html( html);
 
      closeDialogue()
       
     
       
  }
+
+    $('#plus-icon').on('click',addTask);
+    $('#paper_plane-btn').on('click',handle_task_submit);
+    $('#priorities-open-btn').on('click',openPrioritiesWidget);
+    $('#categories_open_btn').on('click',openCategories);
+    $('#open-date-btn').on('click',openDateInput);
+    $('#close-dialogue-btn').on('click',closeDialogue);
+    $('#close-save-date-btn').on('click',close_save_dateDialogue);
+    $('#closeDialog-btn').on('click',closeDialog);
+    $('#add-category-btn').on('click',close_save_Categories);
+    $('#close-categories-btn').on('click',closeCategories);
+    $('#save-priority-btn').on('click',savePriority);
+    $('#cancel-priority-btn').on('click',cancelPriority);
+    
+     

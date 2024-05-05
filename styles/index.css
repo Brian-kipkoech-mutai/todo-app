@@ -459,7 +459,7 @@ position: relative;
   background-color: #87ceeb; /* Light teal */
 }
 
-#entertainment i{
+#leisure i{
   background-color: #ffb6c1; /* Light pink */
 }
 
@@ -809,6 +809,7 @@ body::-webkit-scrollbar{
    display: flex;
    justify-content: space-between;
   color:#d3d3d3;
+  gap: 0.5em;
   
 }
 .taskCell-bottom-right-data{

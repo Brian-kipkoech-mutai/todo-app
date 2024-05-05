@@ -233,17 +233,17 @@
         </section>
                   </section>
                   <section id="bottom-priority-s">
-                    <section id="cancel-priority-btn" onclick="cancelPriority()">Cancel</section>
-                    <section id="save-priority-btn" onclick="savePriority()">Save</section>
+                    <section id="cancel-priority-btn" >Cancel</section>
+                    <section id="save-priority-btn"  >Save</section>
                   </section>
             </section>
         </div>
     <div id="category-container">
         <div id="category">
-            
+             
          
             <section id="category-top">
-                <i class="fas fa-times" onclick="closeCategories()"  ></i>
+                <i class="fas fa-times" id="close-categories-btn" ></i>
                  <span>Choose category</span>
                 </section>
         
@@ -278,7 +278,7 @@
                     <i class="fas fa-money-bill-wave"value="Finance" ></i>
                 </section>
                 
-                <section id="entertainment">
+                <section id="leisure">
                     <label for="entertainment">Leisure</label>
                     <i class="fas fa-gamepad" value="leisure" ></i>
                 </section>
@@ -306,7 +306,7 @@
                 </section>
                  
             </section>
-            <section id="add-category-btn" onclick="close_save_Categories()"> Add category</section>
+            <section id="add-category-btn"  > Add category</section>
         
           </div>
         
@@ -326,8 +326,8 @@
                 </div>
                <div class="dialogue-controls"> 
                    
-                   <i class="fas fa-times" onclick="closeDialog()"  ></i>
-                   <i class="fas fa-save" onclick="close_save_dateDialogue()"></i>
+                   <i class="fas fa-times" id="closeDialog-btn"></i>
+                   <i class="fas fa-save"   id="close-save-date-btn"></i>
                 </div>
                </div>
    
@@ -336,7 +336,7 @@
 
        <div id="dialogue-box">
         <div id="input-dialogue" >
-            <section class="close-dialoge-container"> <span>Add Task</span> <i class="fas fa-times" onclick="closeDialogue()"></i></section>
+            <section class="close-dialoge-container"> <span>Add Task</span> <i class="fas fa-times"  id="close-dialogue-btn"></i></section>
             <section class="taskTittle">
             <input type="text" name="taskTittleInput" id="taskTittleInput" placeholder="Enter task title">
             </section>
@@ -350,10 +350,10 @@
                 <div id="priority-value-txt"></div>
             </section>
             <section class="task-setting">
-                <i class="fas fa-clock" onclick="openDateInput()"></i>
-                <i class="fas fa-tag" onclick="openCategories()"></i>
-                <i class="fas fa-flag" onclick="openPrioritiesWidget()"></i>
-                <i class="fas fa-paper-plane" onclick="handle_task_submit()"></i>
+                <i class="fas fa-clock"   id="open-date-btn"></i>
+                <i class="fas fa-tag"   id="categories_open_btn"></i>
+                <i class="fas fa-flag"   id="priorities-open-btn"></i>
+                <i class="fas fa-paper-plane"   id="paper_plane-btn"></i>
             </section>
        </div> 
        </div>
@@ -368,7 +368,7 @@
     <span class="icons-label">calender</span>
 </section>
 <section class="plus-con">
-    <i class="fas fa-plus-circle" id="plus-icon" onclick="addTask()"></i>
+    <i class="fas fa-plus-circle" id="plus-icon" ></i>
     <span class="icons-label"></span>
 </section>
 <section class="focus">
@@ -391,6 +391,8 @@
  
  
  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="../js/index.js"></script>
+<script type="module" src="../js/index.js">
+
+</script>
 </body>
 </html>
