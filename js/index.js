@@ -6,7 +6,7 @@ const dateInput=document.getElementById('datetime-local');
 
 
 const indexPageData=[
-  `
+  `<div>
   <svg  style="width: 250px; height: 250px;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M227 173.61H0V173.723H227V173.61Z" fill="#EBEBEB"/>
   <path d="M204.255 177.932H162.986V178.045H204.255V177.932Z" fill="#EBEBEB"/>
@@ -122,16 +122,49 @@ const indexPageData=[
   <path d="M159.168 186.44C158.883 186.466 158.598 186.394 158.36 186.235C158.308 186.188 158.267 186.128 158.242 186.062C158.217 185.996 158.207 185.925 158.215 185.854C158.215 185.811 158.227 185.769 158.249 185.732C158.271 185.695 158.303 185.665 158.342 185.645C158.746 185.418 160.085 186.099 160.235 186.176C160.25 186.183 160.262 186.195 160.27 186.21C160.277 186.225 160.279 186.242 160.276 186.258C160.274 186.274 160.266 186.289 160.255 186.301C160.243 186.312 160.228 186.32 160.212 186.322C159.869 186.395 159.519 186.435 159.168 186.44ZM158.564 185.754C158.514 185.752 158.465 185.762 158.419 185.781C158.404 185.79 158.391 185.803 158.382 185.818C158.374 185.833 158.369 185.85 158.369 185.868C158.362 185.914 158.368 185.961 158.384 186.005C158.401 186.048 158.429 186.087 158.464 186.117C158.669 186.299 159.218 186.331 159.953 186.208C159.519 185.98 159.049 185.827 158.564 185.754Z" fill="#D7D7D7"/>
   <path d="M160.198 186.326H160.167C159.763 186.145 158.968 185.418 159.032 185.05C159.032 184.964 159.109 184.851 159.322 184.833C159.403 184.821 159.485 184.826 159.564 184.849C159.642 184.872 159.714 184.911 159.776 184.964C160.198 185.314 160.285 186.208 160.289 186.249C160.291 186.262 160.289 186.276 160.284 186.288C160.278 186.3 160.269 186.31 160.257 186.317C160.24 186.327 160.219 186.331 160.198 186.326ZM159.386 184.964H159.354C159.213 184.964 159.204 185.032 159.2 185.055C159.163 185.277 159.704 185.845 160.108 186.09C160.068 185.709 159.91 185.35 159.654 185.064C159.576 185.006 159.482 184.974 159.386 184.973V184.964Z" fill="#D7D7D7"/>
   </svg>
-  <p>
+  </div>
+  <p class="bright">
       what do you want to do today ?
   </p>
-  <p>
+  <p class="bright">
       tap <span class="plus-symbol">+</span> to add your tasks
   </p>
+  `,
+  `
+  <section id="task-view">
+              <section id="search-task">
+                <i class="fas fa-search"></i>
+            <input type="text" name="" id="search-task-input" placeholder="Search for your  task...">
+                 
+              </section>
+              <div class="task-btn" id="task-btns">
+                <section id="today-task-info" class="task-info-label">
+                    <span>Today</span>
+                    <i class="fas fa-angle-down"></i>
+                  </section>
+                <section id="completed-task-container" class="task-info-label">
+                    <span>Completed</span>
+                    <i class="fas fa-angle-down"></i>
+                  </section>
+              </div>
+               
+              <section id="task-container">
+                 
+                 
+                 
+ 
+                 
+                 
+
+              </section>
   `
 ]
      
-
+// $('#task-container').html(indexPageData[0])
+// $('#search-task').css('display','none')
+// $('#task-btns').css('display','none')
+// $('#task-container').css('justifyContent','center')
+$('.middle').html(indexPageData[0])
 
    function  addTask(){
  dialogueBox.style.display='flex'
@@ -372,6 +405,7 @@ const taskIcons={
   Sports:'<i class="fas fa-futbol" value="Sports"></i> '
 }
 const handle_task_submit=()=>{
+  $('.middle').html(indexPageData[1])
      const taskTitle= $("#taskTittleInput").val();
      const taskDescription = $('#text-decription-txt-area').val();
      const taskDate = $("#datepicker").val();
@@ -389,8 +423,7 @@ const handle_task_submit=()=>{
     category
    }
    dataSet.unshift(dataCapture);
-   // working  on the bellow line  tomorrow  it coursing inconsistency the issues may  lie on the toLocal date string we are yet to find out
-   const todayDataSet=dataSet.filter(({taskDate})=>dateFunction(taskDate))
+    const todayDataSet=dataSet.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
     todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
  
