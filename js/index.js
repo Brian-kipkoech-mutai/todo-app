@@ -4,7 +4,44 @@ const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
 const dateInput=document.getElementById('datetime-local');
 
-
+const taskBackground = {
+  'Personal': '#add8e6',
+  'Work': '#90ee90',
+  'Shopping': '#ffa07a',
+  'Health': '#c9a0dc',
+  'Education': '#ffff99',
+  'Finance': '#87ceeb',
+  'leisure': '#ffb6c1',
+  'Home': '#f4a460',
+  'Family': '#ff6347',
+  'Social': '#e0ffff',
+  'Sports': '#d3d3d3'
+};
+let superscript = {
+  "1": "<span><span>1</span><sup>st</sup></span>",
+  "2": "<span><span>2</span><sup>nd</sup></span>",
+  "3": "<span><span>3</span><sup>rd</sup></span>",
+  "4": "<span><span>4</span><sup>th</sup></span>",
+  "5": "<span><span>5</span><sup>th</sup></span>",
+  "6": "<span><span>6</span><sup>th</sup></span>",
+  "7": "<span><span>7</span><sup>th</sup></span>",
+  "8": "<span><span>8</span><sup>th</sup></span>",
+  "9": "<span><span>9</span><sup>th</sup></span>",
+  "10": "<span>1<span>10</span><sup>th</sup></span>"
+};
+const taskIcons={
+  Personal:'<i class="fas fa-list-alt" value="Personal"></i>',
+  Work:'<i class="fas fa-briefcase" value="Work"></i>',
+  Shopping:'<i class="fas fa-shopping-cart" value="Shopping"></i>',
+  Health:'<i class="fas fa-dumbbell" value="Health"></i>',
+  Education:'<i class="fas fa-graduation-cap" value="Education"></i>',
+  Finance:'<i class="fas fa-money-bill-wave"value="Finance" ></i>',
+  leisure:'<i class="fas fa-gamepad" value="leisure" ></i>',
+  Home:'<i class="fas fa-home" value="Home"></i>',
+  Family:'<i class="fas fa-users" value="Family"></i>',
+  Social:'<i class="fas fa-comments"value="Social" ></i>',
+  Sports:'<i class="fas fa-futbol" value="Sports"></i> '
+}
 const indexPageData=[
   `<div>
   <svg  style="width: 250px; height: 250px;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,12 +196,55 @@ const indexPageData=[
               </section>
   `
 ]
+$('.middle').html(indexPageData[0])
+const isTodayDataPresent =  localStorage.getItem('dataSet');
+if(isTodayDataPresent){
+  
+  $('.middle').html(indexPageData[1])
+  const storedData=JSON.parse(isTodayDataPresent)
+   const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
+   console.log('tsd',todayDataSet);
+    let html=''
+    todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
+       
+
      
+   const cellTemplate = `<section id="task-cell-container" >
+   <div>
+       <div class="circle"></div>
+   </div>
+   <div  class="task-detail-container">
+         <section>${taskTitle}</section>
+         <section class="taskCell-bottom-container">
+           <span>today At  ${taskTime}</span>
+           <section class="taskCell-bottom-right-data">
+               <section style="background-color:${taskBackground[category]};" >
+                     ${taskIcons[category]}
+                   <span>${category}</span>
+               </section>
+               <section>
+                   <i class="fas fa-flag"  ></i>
+                   <span>${ superscript[taskPriority]}<span>
+               </section>
+           </section>
+         </section>
+   </div>
+</section>`
+
+ html+=cellTemplate
+     
+   })
+    
+ 
+   $('#task-container').html( html);
+ console.log('helllllllllllo');
+
+}
 // $('#task-container').html(indexPageData[0])
 // $('#search-task').css('display','none')
 // $('#task-btns').css('display','none')
 // $('#task-container').css('justifyContent','center')
-$('.middle').html(indexPageData[0])
+ 
 
    function  addTask(){
  dialogueBox.style.display='flex'
@@ -264,19 +344,7 @@ $('.middle').html(indexPageData[0])
     '#d3d3d3',
     '#afeeee'
       ]
-      const taskBackground = {
-        'Personal': '#add8e6',
-        'Work': '#90ee90',
-        'Shopping': '#ffa07a',
-        'Health': '#c9a0dc',
-        'Education': '#ffff99',
-        'Finance': '#87ceeb',
-        'leisure': '#ffb6c1',
-        'Home': '#f4a460',
-        'Family': '#ff6347',
-        'Social': '#e0ffff',
-        'Sports': '#d3d3d3'
-    };
+       
     
 
   $('#category-middle section i').on('click',function(){
@@ -339,18 +407,7 @@ const cancelPriority=()=>{
    
 
 }
-let superscript = {
-  "1": "<span><span>1</span><sup>st</sup></span>",
-  "2": "<span><span>2</span><sup>nd</sup></span>",
-  "3": "<span><span>3</span><sup>rd</sup></span>",
-  "4": "<span><span>4</span><sup>th</sup></span>",
-  "5": "<span><span>5</span><sup>th</sup></span>",
-  "6": "<span><span>6</span><sup>th</sup></span>",
-  "7": "<span><span>7</span><sup>th</sup></span>",
-  "8": "<span><span>8</span><sup>th</sup></span>",
-  "9": "<span><span>9</span><sup>th</sup></span>",
-  "10": "<span>1<span>10</span><sup>th</sup></span>"
-};
+ 
 let priorityValue=0;
 const savePriority=()=>{
     
@@ -390,20 +447,8 @@ $('.flag-section').on('click',function(){
       $(this).css('background-color','#8687E7');
       priorityValue=$(this).attr('value');
 })
-const dataSet=[];
-const taskIcons={
-  Personal:'<i class="fas fa-list-alt" value="Personal"></i>',
-  Work:'<i class="fas fa-briefcase" value="Work"></i>',
-  Shopping:'<i class="fas fa-shopping-cart" value="Shopping"></i>',
-  Health:'<i class="fas fa-dumbbell" value="Health"></i>',
-  Education:'<i class="fas fa-graduation-cap" value="Education"></i>',
-  Finance:'<i class="fas fa-money-bill-wave"value="Finance" ></i>',
-  leisure:'<i class="fas fa-gamepad" value="leisure" ></i>',
-  Home:'<i class="fas fa-home" value="Home"></i>',
-  Family:'<i class="fas fa-users" value="Family"></i>',
-  Social:'<i class="fas fa-comments"value="Social" ></i>',
-  Sports:'<i class="fas fa-futbol" value="Sports"></i> '
-}
+const dataSet=JSON.parse(localStorage.getItem('dataSet'))||[];
+ 
 const handle_task_submit=()=>{
   $('.middle').html(indexPageData[1])
      const taskTitle= $("#taskTittleInput").val();
@@ -423,7 +468,11 @@ const handle_task_submit=()=>{
     category
    }
    dataSet.unshift(dataCapture);
-    const todayDataSet=dataSet.filter(({taskDate})=>dateFunction(taskDate))
+   localStorage.setItem('dataSet',JSON.stringify(dataSet));
+   const storedData= JSON.parse(localStorage.getItem('dataSet'));
+    
+
+    const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
     todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
  
