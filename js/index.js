@@ -1,4 +1,4 @@
- import dateFunction from "./helperFunctions.js";
+ import dateFunction, { populatingFunction } from "./helperFunctions.js";
 const dialogueBox=document.getElementById('dialogue-box');
 const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
@@ -197,53 +197,17 @@ const indexPageData=[
   `
 ]
 $('.middle').html(indexPageData[0])
-const isTodayDataPresent =  localStorage.getItem('dataSet');
-if(isTodayDataPresent){
-  
-  $('.middle').html(indexPageData[1])
-  const storedData=JSON.parse(isTodayDataPresent)
-   const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
-   console.log('tsd',todayDataSet);
-    let html=''
-    todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
-       
-
-     
-   const cellTemplate = `<section id="task-cell-container" >
-   <div>
-       <div class="circle"></div>
-   </div>
-   <div  class="task-detail-container">
-         <section>${taskTitle}</section>
-         <section class="taskCell-bottom-container">
-           <span>today At  ${taskTime}</span>
-           <section class="taskCell-bottom-right-data">
-               <section style="background-color:${taskBackground[category]};" >
-                     ${taskIcons[category]}
-                   <span>${category}</span>
-               </section>
-               <section>
-                   <i class="fas fa-flag"  ></i>
-                   <span>${ superscript[taskPriority]}<span>
-               </section>
-           </section>
-         </section>
-   </div>
-</section>`
-
- html+=cellTemplate
-     
-   })
-    
- 
-   $('#task-container').html( html);
- console.log('helllllllllllo');
-
+const isDataPresent =  localStorage.getItem('dataSet');
+let todayDataPresent= ''
+if(isDataPresent){
+  todayDataPresent=JSON.parse(isDataPresent).filter(({taskDate})=>dateFunction(taskDate));
 }
-// $('#task-container').html(indexPageData[0])
-// $('#search-task').css('display','none')
-// $('#task-btns').css('display','none')
-// $('#task-container').css('justifyContent','center')
+  
+if(todayDataPresent.length){
+  
+   populatingFunction(todayDataPresent,indexPageData,taskIcons,superscript,taskBackground);
+}
+ 
  
 
    function  addTask(){
@@ -456,7 +420,7 @@ const handle_task_submit=()=>{
      const taskDate = $("#datepicker").val();
      const  taskPriority = priorityValue;
      const category=categoriesValue;
-       console.log('taskDate',taskDate);
+      
      const  taskTime=taskDate.match(/\s\d{1,2}:\d{2}\s+\w+/)[0]
    
    const dataCapture ={
@@ -474,37 +438,7 @@ const handle_task_submit=()=>{
 
     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
-    todayDataSet.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
- 
-    console.log(chosenCategoriesColor);
-   const cellTemplate = `<section id="task-cell-container"    >
-   <div>
-       <div class="circle"></div>
-   </div>
-   <div  class="task-detail-container">
-         <section>${taskTitle}</section>
-         <section class="taskCell-bottom-container">
-           <span>today At  ${taskTime}</span>
-           <section class="taskCell-bottom-right-data">
-               <section style="background-color:${taskBackground[category]};" >
-                     ${taskIcons[category]}
-                   <span>${category}</span>
-               </section>
-               <section>
-                   <i class="fas fa-flag"  ></i>
-                   <span>${ superscript[taskPriority]}<span>
-               </section>
-           </section>
-         </section>
-   </div>
-</section>`
-
- html+=cellTemplate
-     
-   })
-    
-
-   $('#task-container').html( html);
+    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
 
      closeDialogue()
       
