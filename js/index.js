@@ -1,4 +1,4 @@
- import dateFunction, { populatingFunction } from "./helperFunctions.js";
+ import dateFunction, { populatingFunction, removeOldData } from "./helperFunctions.js";
 const dialogueBox=document.getElementById('dialogue-box');
 const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
@@ -411,6 +411,15 @@ $('.flag-section').on('click',function(){
       $(this).css('background-color','#8687E7');
       priorityValue=$(this).attr('value');
 })
+const relevantData=[];
+if(JSON.parse(localStorage.getItem('dataSet')).length){
+  //all the  data plus the previous days  data   here is were we filter the out to save  storage
+  const  unfilteredData=JSON.parse(localStorage.getItem('dataSet'));
+      const filteredData= unfilteredData.filter(({taskDate})=>()=>removeOldData(taskDate));
+     console.log("filteredData",filteredData);
+ 
+}
+
 const dataSet=JSON.parse(localStorage.getItem('dataSet'))||[];
  
 const handle_task_submit=()=>{
