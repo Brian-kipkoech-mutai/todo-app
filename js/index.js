@@ -200,6 +200,7 @@ $('.middle').html(indexPageData[0])
 const isDataPresent =  localStorage.getItem('dataSet');
 let todayDataPresent= ''
 if(isDataPresent){
+  
   todayDataPresent=JSON.parse(isDataPresent).filter(({taskDate})=>dateFunction(taskDate));
 }
   
@@ -412,12 +413,12 @@ $('.flag-section').on('click',function(){
       priorityValue=$(this).attr('value');
 })
 const relevantData=[];
-if(JSON.parse(localStorage.getItem('dataSet')).length){
+if(JSON.parse(localStorage.getItem('dataSet'))!==null){
   //all the  data plus the previous days  data   here is were we filter the out to save  storage
-  const  unfilteredData=JSON.parse(localStorage.getItem('dataSet'));
-      const filteredData= unfilteredData.filter(({taskDate})=>()=>removeOldData(taskDate));
-     console.log("filteredData",filteredData);
- 
+ const  unfilteredData=JSON.parse(localStorage.getItem('dataSet'));
+ const filteredData= unfilteredData.filter(({taskDate})=>removeOldData(taskDate));
+ localStorage.setItem('dataSet',JSON.stringify(filteredData));
+      
 }
 
 const dataSet=JSON.parse(localStorage.getItem('dataSet'))||[];
