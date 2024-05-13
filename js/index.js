@@ -3,6 +3,8 @@ const dialogueBox=document.getElementById('dialogue-box');
 const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
 const dateInput=document.getElementById('datetime-local');
+$('#editView-container').css('display','none');
+
 
 const taskBackground = {
   'Personal': '#add8e6',
@@ -430,7 +432,7 @@ const handle_task_submit=()=>{
      const taskDate = $("#datepicker").val();
      const  taskPriority = priorityValue;
      const category=categoriesValue;
-      
+     const id = dataSet.length-1;
      const  taskTime=taskDate.match(/\s\d{1,2}:\d{2}\s+\w+/)[0]
    
    const dataCapture ={
@@ -439,7 +441,8 @@ const handle_task_submit=()=>{
     taskDate,
     taskTime,
     taskPriority,
-    category
+    category,
+    id
    }
    dataSet.unshift(dataCapture);
    localStorage.setItem('dataSet',JSON.stringify(dataSet));
@@ -448,14 +451,21 @@ const handle_task_submit=()=>{
 
     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
-    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
+    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground,id);
 
      closeDialogue()
       
-    
+     
       
  }
+  function handle_task_edit() {
+    console.log(this);
+    
+  }
+  
 
+
+    $('.task-cell-container>:nth-child(n)').on('click',handle_task_edit)
     $('#plus-icon').on('click',addTask);
     $('#paper_plane-btn').on('click',handle_task_submit);
     $('#priorities-open-btn').on('click',openPrioritiesWidget);

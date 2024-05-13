@@ -16,11 +16,11 @@ export const populatingFunction=(todaysData,indexPageData,taskIcons,superscript,
   $('.middle').html(indexPageData[1])
    
     let html=''
-    todaysData.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category})=>{
+    todaysData.forEach(({taskTitle,taskDescription,taskTime,taskPriority,category,id})=>{
        
 
      
-   const cellTemplate = `<section id="task-cell-container" >
+   const cellTemplate = `<section class="task-cell-container" id="${id}" >
    <div>
        <div class="circle"></div>
    </div>
