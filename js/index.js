@@ -3,6 +3,7 @@ const dialogueBox=document.getElementById('dialogue-box');
 const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
 const dateInput=document.getElementById('datetime-local');
+  let editing= false;
 $('#editView-container').css('display','none');
 
 
@@ -198,10 +199,12 @@ const indexPageData=[
               </section>
   `
 ]
+ 
 $('.middle').html(indexPageData[0])
 const isDataPresent =  localStorage.getItem('dataSet');
 let todayDataPresent= ''
-if(isDataPresent){
+if(isDataPresent!==null){
+  console.log(isDataPresent);
   
   todayDataPresent=JSON.parse(isDataPresent).filter(({taskDate})=>dateFunction(taskDate));
 }
@@ -225,13 +228,17 @@ if(todayDataPresent.length){
  }
 
  function closeDialogue(){
+
    
   dialogueBox.style.display='none'
    
  }
   
  function openDateInput(){
+  
   $('.datetimeoutercontainer').css('display','flex')
+  $('.datetimeoutercontainer').css('zIndex','20')
+     
     gsap.fromTo(dateDialogue,{
       opacity:0,
       width:0,
@@ -248,6 +255,7 @@ if(todayDataPresent.length){
   console.log('function triggered');
   gsap.to(dateDialogue,{
     opacity:0,
+
     width:50,
     duration:0.5,
     onComplete:close
@@ -256,7 +264,10 @@ if(todayDataPresent.length){
  }
 
  function close(){
-  $('.datetimeoutercontainer').css('display','none')
+  $('.datetimeoutercontainer').css('display','none');
+  if(editing){
+
+  }
 }
 
  function close_save_dateDialogue(){
@@ -350,6 +361,7 @@ const close_save_Categories=()=>{
 
 }
 const openCategories=()=>{
+  console.log('priorities called');
   $('#category-container').css({
     'display':'block'
 })
@@ -394,6 +406,7 @@ const savePriority=()=>{
   })
 }
 const openPrioritiesWidget=()=>{
+   
   $('.priority-container').css('display','block')
   gsap.fromTo('#priority',{
     y:-200,
@@ -424,15 +437,16 @@ if(JSON.parse(localStorage.getItem('dataSet'))!==null){
 }
 
 const dataSet=JSON.parse(localStorage.getItem('dataSet'))||[];
- 
+  
 const handle_task_submit=()=>{
+  console.log('submited');
   $('.middle').html(indexPageData[1])
      const taskTitle= $("#taskTittleInput").val();
      const taskDescription = $('#text-decription-txt-area').val();
      const taskDate = $("#datepicker").val();
      const  taskPriority = priorityValue;
      const category=categoriesValue;
-     const id = dataSet.length-1;
+     const id = dataSet.length;
      const  taskTime=taskDate.match(/\s\d{1,2}:\d{2}\s+\w+/)[0]
    
    const dataCapture ={
@@ -451,21 +465,54 @@ const handle_task_submit=()=>{
 
     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
-    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground,id);
+    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
 
      closeDialogue()
       
      
       
  }
+ 
   function handle_task_edit() {
-    console.log(this);
+      const elementId =  $(this).attr('id');
+  
+        const  data= dataSet.find(({id})=>id==elementId)
+        
+        
+        const index= dataSet.indexOf(data);
+        const newData={
+          taskDate:'',
+          taskTitle:'',
+          taskTime:'',
+          taskDescription:'',
+          category:'',
+          taskPriority:''
+        }
+
+const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=data;
+      
+      $('#taskDateEdit').html(taskDate);
+      $('#taskTitleEdit').html(taskTitle);
+      $('#todayEdit').html(`today ${taskTime}`)
+      $('#taskDescriptionedit').html(taskDescription);
+      $('#taskIconEdit').html(taskIcons[category]);
+      $('#catgegoryedit').html(category);
+      $('#flagsuperscriptEdit').html(superscript[taskPriority]);
+
+      $('.date-edit').on('click',()=>{
+        
+        openDateInput()
+        editing=true;
+        
+      })
+  
+   $('#editView-container').css('display','flex');
+        
     
   }
   
 
-
-    $('.task-cell-container>:nth-child(n)').on('click',handle_task_edit)
+    $('#task-container>section').on('click',handle_task_edit)
     $('#plus-icon').on('click',addTask);
     $('#paper_plane-btn').on('click',handle_task_submit);
     $('#priorities-open-btn').on('click',openPrioritiesWidget);
@@ -479,4 +526,5 @@ const handle_task_submit=()=>{
     $('#save-priority-btn').on('click',savePriority);
     $('#cancel-priority-btn').on('click',cancelPriority);
     
+     
      

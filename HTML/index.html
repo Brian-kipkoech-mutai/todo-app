@@ -31,59 +31,7 @@
     <section class="middle" >
             
            </section>
-           <section id="editView-container"> 
-            <section class="editView">
-               <div class="edit-top">
-                   <div><i class="fas fa-undo icon" ></i></div>
-                   <div><i class="fas fa-times icon" ></i></div>
-               </div>
-               <div class="taskCellEdit  task-cell-container" >
-                   <div class="circle"></div>
-                   <div class="task-info-edit">
-                       <div>DO math home work</div>
-                       <div>do chapter 70</div>
-                   </div>
-                   <div class="edit-pen">
-                       <i class="fas fa-pencil-alt icon"></i>
-                   </div>
-               </div>
-               <div class="edit-middle-container">
-                   <div class="">
-                       <div>
-                           <div> <i class="fas fa-clock"   id="open-date-btn"></i></div>
-                           <div>Task Time</div>
-                       </div>
-                       <div>today 1.20pm</div>
-                   </div>
-                   <div class="">
-                       <div>
-                           <div><i class="fas fa-tag"   id="categories_open_btn"></i></div>
-                           <div>Task Category</div>
-                       </div>
-                       <div><span>icn</span>School<span></span></div>
-                   </div>
-                   <div class="">
-                       <div>
-                           <div><i class="fas fa-flag"   id="priorities-open-btn"></i></div>
-                           <div>Task Priority</div>
-                       </div>
-                       <div><span>icn</span>2nd<span></span></div>
-                   </div>
-                    
-                   <div class="delete-section"><i class="fas fa-trash-alt"></i>
-                       <span class="deletetxt">Delete Task</span>
-                   </div>
-                   <div class="edit-task-btn">
-                       Edit Task
-                   </div>
-               </div>
-               
-            </section>
-           </section>
-          
-
-
-  
+         
         <div class="priority-container">
             <section id="priority">
                   <section id="top-priority-s">Task Priority</section>
@@ -240,12 +188,13 @@
  
 
        <div id="dialogue-box">
+
         <div id="input-dialogue" >
             <section class="close-dialoge-container"> <span>Add Task</span> <i class="fas fa-times"  id="close-dialogue-btn"></i></section>
             <section class="taskTittle">
             <input type="text" name="taskTittleInput" id="taskTittleInput" placeholder="Enter task title">
             </section>
-            <section class="tittle-decription-txt-container">
+            <section class="tittle-decription-txt-container"> 
                  <textarea name="Description" id="text-decription-txt-area"  placeholder="Task Description"></textarea>
             </section>
             <section class="task_filled_info">
@@ -259,9 +208,62 @@
                 <i class="fas fa-tag"   id="categories_open_btn"></i>
                 <i class="fas fa-flag"   id="priorities-open-btn"></i>
                 <i class="fas fa-paper-plane"   id="paper_plane-btn"></i>
+                
             </section>
        </div> 
        </div>
+       <section id="editView-container"> 
+        <section class="editView">
+            <div class="edit-top">
+                <div><i class="fas fa-undo icon" ></i></div>
+                <div><i class="fas fa-times icon" ></i></div>
+            </div>
+            <div class="taskCellEdit  task-cell-container" >
+                <div class="circle"></div>
+                <div class="task-info-edit">
+                    <div id="taskTitleEdit"  >${taskTitle}</div>
+                    <div id="taskDescriptionedit">${taskDescription}</div>
+                </div>
+                <div class="edit-pen">
+                    <i class="fas fa-pencil-alt icon"></i>
+                </div>
+            </div>
+            <div class="edit-middle-container">
+                <div class="">
+                    <div>
+                        <div> <i class="fas fa-clock date-edit"   id="open-date-btn"></i></div>
+                        <div id="taskDateEdit" class="pointer date-edit" >${taskDate}</div>
+                    </div>
+                    <div id="todayEdit">today ${taskTime}</div>
+                </div>
+                <div class="">
+                    <div>
+                        <div><i class="fas fa-tag category-edit"   id="categories_open_btn"></i></div>
+                        <div class="pointer category-edit">Task Category</div>
+                    </div>
+                    <div><span id="taskIconEdit">${taskIcons[category]}</span><span id="catgegoryedit">${category}</span></div>
+                </div>
+                <div class="">
+                    <div>
+                        <div><i class="fas fa-flag priority-edit"   id="priorities-open-btn"></i></div>
+                        <div class="pointer priority-edit" >Task Priority</div>
+                    </div>
+                    <div><span><i class="fas fa-flag" ></i></span> <span id="flagsuperscriptEdit">${superscript[taskPriority]}</span></div>
+                </div>
+                 
+                <div class="delete-section"><i class="fas fa-trash-alt delete-sc"></i>
+                    <span class="deletetxt pointer" id="deleteBtn delete-sc">Delete Task</span>
+                </div>
+                <div id="edit-task-btn">
+                     <span>Edit Task</span>
+                </div>
+            </div>
+            
+         </section>
+       
+       
+       </section>
+
      </section>
     <section class="bottom">
         <section class="index">

@@ -11,7 +11,7 @@
  export default dateFunction;
 
 
- 'this   function is for  populating the  #task-view container with stored data or captured data'
+//  'this   function is for  populating the  #task-view container with stored data or captured data'
 export const populatingFunction=(todaysData,indexPageData,taskIcons,superscript,taskBackground)=>{
   $('.middle').html(indexPageData[1])
    
@@ -41,6 +41,7 @@ export const populatingFunction=(todaysData,indexPageData,taskIcons,superscript,
          </section>
    </div>
 </section>`
+
 
  html+=cellTemplate
      
