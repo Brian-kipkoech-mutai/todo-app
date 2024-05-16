@@ -4,6 +4,14 @@ const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
 const dateInput=document.getElementById('datetime-local');
   let editing= false;
+  const newData={
+    taskDate:'',
+    taskTitle:'',
+    taskTime:'',
+    taskDescription:'',
+    category:'',
+    taskPriority:''
+  }
 $('#editView-container').css('display','none');
 
 
@@ -265,15 +273,31 @@ if(todayDataPresent.length){
 
  function close(){
   $('.datetimeoutercontainer').css('display','none');
-  if(editing){
-
-  }
+   
 }
 
  function close_save_dateDialogue(){
   const task_time=$('#datepicker').val()
+  if(editing){
+    
+    newData.taskDate=task_time;
+    const  taskTime=task_time.match(/\s\d{1,2}:\d{2}\s+\w+/)[0]
+    newData.taskTime=taskTime;
+    gsap.from('.date-edit-span',{
+      x:-10,
+      opacity:0,
+      duration:0.5,
+      delay:0.5
+
+    })
+    $('.date-edit-span').html(task_time)
+    
+
+  }
    
-  $('#task-time').html(task_time)
+  else{
+    $('#task-time').html(task_time)
+  }
 
    let tm=gsap.timeline()
   tm.to(dateDialogue,{
@@ -345,15 +369,29 @@ const closeCategories=()=>{
 }
 const close_save_Categories=()=>{
   console.log('default color', originalColors[chosenCategoriesColor]);
+  if(editing){
+  $('#taskIconEdit').html(taskIcons[categoriesValue]);
+  $('#catgegoryedit').html(categoriesValue);
+  
+  gsap.from(['#taskIconEdit','#catgegoryedit'],{
+    opacity:0,
+    duration:0.5,
+    y:20
+  })
+  newData.category=categoriesValue;
+  }
+         else{
         $('#category-value').html(categoriesValue)
         $('#category-value').css({
           'color':chosenCategoriesColor
         })
+        
         gsap.from('#category-value',{
           opacity:0,
           duration:0.5,
           x:-20
         })
+         }
          
   $('#category-container').css({
     'display':'none'
@@ -361,10 +399,13 @@ const close_save_Categories=()=>{
 
 }
 const openCategories=()=>{
-  console.log('priorities called');
+   
+
   $('#category-container').css({
     'display':'block'
+     
 })
+$('#category-container').css('zIndex','20')
 const tl=gsap.timeline()
 
  tl.from('#category',{
@@ -389,6 +430,18 @@ const cancelPriority=()=>{
  
 let priorityValue=0;
 const savePriority=()=>{
+  if(editing){
+     
+    $('#flagsuperscriptEdit').html(superscript[priorityValue]);
+         newData.taskPriority=priorityValue;
+    $('#flagsuperscriptEdit').html(superscript[priorityValue]);
+         gsap.from('#flagsuperscriptEdit',{
+          delay:0.2,
+          opacity:0,
+          duration:0.5,
+          y:20
+         })
+  }
     
   gsap.to('#priority',{
     y:-200,
@@ -407,7 +460,8 @@ const savePriority=()=>{
 }
 const openPrioritiesWidget=()=>{
    
-  $('.priority-container').css('display','block')
+  $('.priority-container').css('display','block');
+  $('.priority-container').css('zIndex','20');
   gsap.fromTo('#priority',{
     y:-200,
     opacity:0,
@@ -472,28 +526,27 @@ const handle_task_submit=()=>{
      
       
  }
+ const openEditWindow=(taskTitle,taskDescription)=>{
+  $("#edit-description-title-container").css('display','flex')
+  $('#edit-task-title').val(taskTitle)
+  $('#edit-task-decription').val(taskDescription )
+ }
  
   function handle_task_edit() {
+ editing=true
       const elementId =  $(this).attr('id');
   
         const  data= dataSet.find(({id})=>id==elementId)
         
         
         const index= dataSet.indexOf(data);
-        const newData={
-          taskDate:'',
-          taskTitle:'',
-          taskTime:'',
-          taskDescription:'',
-          category:'',
-          taskPriority:''
-        }
+        
 
 const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=data;
       
-      $('#taskDateEdit').html(taskDate);
+      // $('#taskDateEdit').html(taskDate);
       $('#taskTitleEdit').html(taskTitle);
-      $('#todayEdit').html(`today ${taskTime}`)
+      $('.date-edit-span').html( taskDate)
       $('#taskDescriptionedit').html(taskDescription);
       $('#taskIconEdit').html(taskIcons[category]);
       $('#catgegoryedit').html(category);
@@ -502,11 +555,15 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       $('.date-edit').on('click',()=>{
         
         openDateInput()
-        editing=true;
+        
         
       })
-  
-   $('#editView-container').css('display','flex');
+      $('.taskCellEdit').on('click',()=>{
+        openEditWindow(taskTitle,taskDescription);
+      })
+      $('.category-edit').on('click',openCategories)
+      $('.priority-edit').on('click',openPrioritiesWidget)
+      $('#editView-container').css('display','flex');
         
     
   }
