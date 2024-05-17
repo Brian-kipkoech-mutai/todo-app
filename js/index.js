@@ -12,8 +12,7 @@ const dateInput=document.getElementById('datetime-local');
     category:'',
     taskPriority:''
   }
-$('#editView-container').css('display','none');
-
+ 
 
 const taskBackground = {
   'Personal': '#add8e6',
@@ -564,7 +563,43 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       $('.category-edit').on('click',openCategories)
       $('.priority-edit').on('click',openPrioritiesWidget)
       $('#editView-container').css('display','flex');
+      $('#cancel-edit-cell').on('click',()=>{
+       $("#edit-description-title-container").css('display','none')
+      })
+      $('#save-edit-cell').on('click',()=>{
+      $("#edit-description-title-container").css('display','none')
         
+        
+       newData.taskTitle=$('#edit-task-title').val();
+       newData.taskDescription=$('#edit-task-decription').val()
+       $('#taskTitleEdit').html($('#edit-task-title').val());
+       $('#taskDescriptionedit').html($('#edit-task-decription').val());
+
+      })
+
+      $('#reset-edit-icon').on('click',()=>{
+
+      $('#taskTitleEdit').html(taskTitle);
+      $('.date-edit-span').html( taskDate)
+      $('#taskDescriptionedit').html(taskDescription);
+      $('#taskIconEdit').html(taskIcons[category]);
+      $('#catgegoryedit').html(category);
+      $('#flagsuperscriptEdit').html(superscript[taskPriority]);
+
+
+      })
+      $('#exit-edit-view').on('click',()=>{
+         $('#editView-container').css('display','none')
+      })
+      $('#deleteBtn').on('click',()=>{
+      $('#delete-outer-container').css('display','grid');
+      $('#task_title-on-delete').html(`Task title:${$('#edit-task-title').val()}`)
+      })
+      $('#cancel-delete').on('click',()=>$('.delete-outer-container').css('display','none'))
+      $('#delete-data').on('click',()=>{
+        $('.delete-outer-container').css('display','none');
+
+      })
     
   }
   

@@ -29,6 +29,19 @@
          
     </section>
     <section class="middle" >
+        <div class="delete-outer-container">
+            <div class="delete-container">
+                <div>Delete Task</div>
+                <div class="delete-body">
+                    <section><p>Are you sure you want to Delete this task?</p></section>
+                    <section id="task_title-on-delete"></section>
+                </div>
+                <div id="delete-window-btns">
+                    <div id="cancel-delete">Cancel</div>
+                    <div id="delete-data">Delete</div>
+                </div>
+              </div>
+        </div>
           
             
            </section>
@@ -42,8 +55,8 @@
                  <textarea name="" id="edit-task-decription" placeholder="Enter Task Description"></textarea>
                 
                 <div class="">
-                    <div class="">Cancel</div>
-                    <div class="">Edit</div>
+                    <div class="" id="cancel-edit-cell">Cancel</div>
+                    <div class="" id="save-edit-cell">Edit</div>
                 </div>
             </div>
          </section>
@@ -231,8 +244,8 @@
        <section id="editView-container"> 
         <section class="editView">
             <div class="edit-top">
-                <div><i class="fas fa-undo icon" ></i></div>
-                <div><i class="fas fa-times icon" ></i></div>
+                <div><i class="fas fa-undo icon"  id="reset-edit-icon"></i></div>
+                <div><i class="fas fa-times icon" id="exit-edit-view" ></i></div>
             </div>
             <div class="taskCellEdit  task-cell-container" >
                 <div class="circle"></div>
@@ -268,7 +281,7 @@
                 </div>
                  
                 <div class="delete-section"><i class="fas fa-trash-alt delete-sc"></i>
-                    <span class="deletetxt pointer" id="deleteBtn delete-sc">Delete Task</span>
+                    <span class="deletetxt pointer delete-sc" id="deleteBtn">Delete Task</span>
                 </div>
                 <div id="edit-task-btn">
                      <span>Edit Task</span>

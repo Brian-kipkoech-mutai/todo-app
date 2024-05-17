@@ -877,7 +877,7 @@ body::-webkit-scrollbar{
   z-index: 10;
   height: 100%;
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   background-color: #121212;
 }
@@ -1026,10 +1026,77 @@ cursor: pointer;
   height: 100%;
   display: none;
   flex-direction: column;
-    padding-top: 20%;
-  
+  padding-top: 20%;
   align-items: center;
   background-color:rgba(0, 0, 0, 0.4); 
   position: absolute;
   z-index: 30;
+}
+.delete-outer-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.4); 
+  z-index: 30;
+}
+
+.delete-container{
+  width: calc(100vw - 2em);
+  background-color: #363636;
+  max-width: 500px; 
+  color: #e5e5e5;
+  padding: 1em;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+   
+}
+.delete-container>:first-child::after{
+
+  content: '';
+  margin-top: 0.5em;
+  display: block;
+  width: 100%;
+  background-color: grey;
+  height: 1px;
+}
+.delete-container>:first-child{
+  font-size: 1.2em;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.delete-body section p {
+font-size: 1.1em !important;
+  
+}
+#delete-window-btns{
+  display: flex;
+  width: 100%;
+  height: 3em;
+  font-size: 1em;
+
+}
+#delete-window-btns>:nth-child(n){
+  cursor: pointer;
+}
+#delete-window-btns>:first-child{
+  flex-grow: 1;
+  height: 100%;
+  display: grid;
+  place-items: center;
+
+  
+}
+#delete-window-btns>:last-child{
+  flex-grow: 1;
+  background-color: #8687E7;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: 0.3em;
 }
