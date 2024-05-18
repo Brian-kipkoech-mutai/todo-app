@@ -4,7 +4,8 @@ const dateDialogue= document.getElementById('dialog');
 const middleSection=document.getElementsByClassName('middle')[0];
 const dateInput=document.getElementById('datetime-local');
   let editing= false;
-  const newData={
+  let currentIndexEdit =0;
+  let newData={
     taskDate:'',
     taskTitle:'',
     taskTime:'',
@@ -298,7 +299,7 @@ if(todayDataPresent.length){
     $('#task-time').html(task_time)
   }
 
-   let tm=gsap.timeline()
+  let tm=gsap.timeline()
   tm.to(dateDialogue,{
     opacity:0,
     width:50,
@@ -346,8 +347,7 @@ if(todayDataPresent.length){
     '#afeeee'
       ]
        
-    
-
+  
   $('#category-middle section i').on('click',function(){
  
 
@@ -379,6 +379,7 @@ const close_save_Categories=()=>{
   })
   newData.category=categoriesValue;
   }
+   
          else{
         $('#category-value').html(categoriesValue)
         $('#category-value').css({
@@ -486,13 +487,13 @@ if(JSON.parse(localStorage.getItem('dataSet'))!==null){
  const  unfilteredData=JSON.parse(localStorage.getItem('dataSet'));
  const filteredData= unfilteredData.filter(({taskDate})=>removeOldData(taskDate));
  localStorage.setItem('dataSet',JSON.stringify(filteredData));
-      
+
 }
 
 const dataSet=JSON.parse(localStorage.getItem('dataSet'))||[];
   
 const handle_task_submit=()=>{
-  console.log('submited');
+  
   $('.middle').html(indexPageData[1])
      const taskTitle= $("#taskTittleInput").val();
      const taskDescription = $('#text-decription-txt-area').val();
@@ -519,12 +520,16 @@ const handle_task_submit=()=>{
     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
     let html=''
     populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
-
+     refresh()
      closeDialogue()
       
      
       
  }
+ const  refresh=()=>{
+  $('#task-container>section').on('click',handle_task_edit)
+ }
+ let data={};
  const openEditWindow=(taskTitle,taskDescription)=>{
   $("#edit-description-title-container").css('display','flex')
   $('#edit-task-title').val(taskTitle)
@@ -532,14 +537,23 @@ const handle_task_submit=()=>{
  }
  
   function handle_task_edit() {
+    newData={
+      taskDate:'',
+      taskTitle:'',
+      taskTime:'',
+      taskDescription:'',
+      category:'',
+      taskPriority:''
+    }
+
  editing=true
       const elementId =  $(this).attr('id');
   
-        const  data= dataSet.find(({id})=>id==elementId)
+        data= dataSet.find(({id})=>id==elementId)
         
         
         const index= dataSet.indexOf(data);
-        
+         currentIndexEdit=index
 
 const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=data;
       
@@ -560,11 +574,11 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       $('.taskCellEdit').on('click',()=>{
         openEditWindow(taskTitle,taskDescription);
       })
-      $('.category-edit').on('click',openCategories)
-      $('.priority-edit').on('click',openPrioritiesWidget)
+      
+      $('.priority-edit').on('click',openPrioritiesWidget);
       $('#editView-container').css('display','flex');
       $('#cancel-edit-cell').on('click',()=>{
-       $("#edit-description-title-container").css('display','none')
+      $("#edit-description-title-container").css('display','none')
       })
       $('#save-edit-cell').on('click',()=>{
       $("#edit-description-title-container").css('display','none')
@@ -590,21 +604,66 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       })
       $('#exit-edit-view').on('click',()=>{
          $('#editView-container').css('display','none')
+         editing=false;
       })
-      $('#deleteBtn').on('click',()=>{
-      $('#delete-outer-container').css('display','grid');
-      $('#task_title-on-delete').html(`Task title:${$('#edit-task-title').val()}`)
-      })
-      $('#cancel-delete').on('click',()=>$('.delete-outer-container').css('display','none'))
-      $('#delete-data').on('click',()=>{
-        $('.delete-outer-container').css('display','none');
+
+      $('.delete-sc').on('click',()=>{
+        
+      $('.delete-outer-container').css('display','grid');
+      $('#task_title-on-delete').html(`Task title : ${$('#edit-task-title').val()||taskTitle}`)
 
       })
+
+      $('#cancel-delete').on('click',()=>$('.delete-outer-container').css('display','none'))
+
+       
     
   }
-  
+  $('.category-edit').on('click',openCategories)
+  $('#delete-data').on('click',()=>{
 
+    $('.delete-outer-container').css('display','none');
+    $('#editView-container').css('display','none')
+
+     let spliced=dataSet.splice(currentIndexEdit,1)
+     console.log('splicing index',currentIndexEdit,'spliced=',spliced);
+      
+     localStorage.setItem('dataSet',JSON.stringify(dataSet));
+     const storedData= JSON.parse(localStorage.getItem('dataSet'));
+     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
+     editing=false;
+    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
+
+          refresh()
+  })
+    $('#edit-task-btn').on('click',()=>{
+    let taskSwap={};
+  for (const [key,value] of Object.entries(data)) {
+    if(newData[key]){
+      taskSwap[key]=newData[key]
+    }
+    else{
+      taskSwap[key]=value
+    }
+    editing=false
+  }
+
+  dataSet.splice(currentIndexEdit,1,taskSwap)
+  localStorage.setItem('dataSet',JSON.stringify(dataSet));
+     const storedData= JSON.parse(localStorage.getItem('dataSet'));
+     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
+     editing=false;
+     $('#editView-container').css('display','none')
+    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
+    refresh()
+
+  
+    })
+  
+    
     $('#task-container>section').on('click',handle_task_edit)
+    
+    
     $('#plus-icon').on('click',addTask);
     $('#paper_plane-btn').on('click',handle_task_submit);
     $('#priorities-open-btn').on('click',openPrioritiesWidget);
