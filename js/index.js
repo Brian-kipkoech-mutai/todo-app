@@ -582,7 +582,7 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       })
       $('#save-edit-cell').on('click',()=>{
       $("#edit-description-title-container").css('display','none')
-        
+         
         
        newData.taskTitle=$('#edit-task-title').val();
        newData.taskDescription=$('#edit-task-decription').val()
@@ -644,10 +644,19 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
     }
     else{
       taskSwap[key]=value
+        
     }
     editing=false
   }
+    if(!$('#taskDescriptionedit').html()){
+      taskSwap.taskDescription='';
 
+    }
+    if(!$('#taskTitleEdit').html()){
+      alert('Task must have a Tittle!')
+      return
+    }
+    
   dataSet.splice(currentIndexEdit,1,taskSwap)
   localStorage.setItem('dataSet',JSON.stringify(dataSet));
      const storedData= JSON.parse(localStorage.getItem('dataSet'));

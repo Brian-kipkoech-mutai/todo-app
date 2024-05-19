@@ -655,5 +655,5 @@ function moveToLogin(){
   function login(){
       
      
-     window.location.href='http://localhost:5500/HTML/'
+     window.location.href='http://192.168.8.118:5500/HTML/'
   }
