@@ -14,7 +14,7 @@ const dateInput=document.getElementById('datetime-local');
     taskPriority:''
   }
  
-
+   
 const taskBackground = {
   'Personal': '#add8e6',
   'Work': '#90ee90',
@@ -214,7 +214,7 @@ let todayDataPresent= ''
 if(isDataPresent!==null){
   console.log(isDataPresent);
   
-  todayDataPresent=JSON.parse(isDataPresent).filter(({taskDate})=>dateFunction(taskDate));
+  todayDataPresent=JSON.parse(isDataPresent).filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed);
 }
   
 if(todayDataPresent.length){
@@ -510,14 +510,15 @@ const handle_task_submit=()=>{
     taskTime,
     taskPriority,
     category,
-    id
+    id,
+    completed:false
    }
    dataSet.unshift(dataCapture);
    localStorage.setItem('dataSet',JSON.stringify(dataSet));
    const storedData= JSON.parse(localStorage.getItem('dataSet'));
     
 
-    const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
+    const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed)
     let html=''
     populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
      refresh()
@@ -527,7 +528,12 @@ const handle_task_submit=()=>{
       
  }
  const  refresh=()=>{
-  $('#task-container>section').on('click',handle_task_edit)
+  $('#task-container>section').off('click').on('click',handleTaskAction)
+
+  $('#completed-task-container').off('click').on('click',todayCompleted)
+
+
+    $('#today-task-info').off('click').off('click').on('click',todayNotCompleted)
  }
  let data={};
  const openEditWindow=(taskTitle,taskDescription)=>{
@@ -536,7 +542,7 @@ const handle_task_submit=()=>{
   $('#edit-task-decription').val(taskDescription )
  }
  
-  function handle_task_edit() {
+  function handle_task_edit(id) {
     newData={
       taskDate:'',
       taskTitle:'',
@@ -547,7 +553,7 @@ const handle_task_submit=()=>{
     }
 
  editing=true
-      const elementId =  $(this).attr('id');
+      const elementId = id;
   
         data= dataSet.find(({id})=>id==elementId)
         
@@ -555,7 +561,7 @@ const handle_task_submit=()=>{
         const index= dataSet.indexOf(data);
          currentIndexEdit=index
 
-const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=data;
+const {taskTitle,taskDescription,taskDate,taskPriority,category}=data;
       
       // $('#taskDateEdit').html(taskDate);
       $('#taskTitleEdit').html(taskTitle);
@@ -565,22 +571,22 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       $('#catgegoryedit').html(category);
       $('#flagsuperscriptEdit').html(superscript[taskPriority]);
 
-      $('.date-edit').on('click',()=>{
+      $('.date-edit').off('click').on('click',()=>{
         
         openDateInput()
-        
+         
         
       })
-      $('.taskCellEdit').on('click',()=>{
+      $('.taskCellEdit').off('click').on('click',()=>{
         openEditWindow(taskTitle,taskDescription);
       })
       
-      $('.priority-edit').on('click',openPrioritiesWidget);
+      $('.priority-edit').off('click').on('click',openPrioritiesWidget);
       $('#editView-container').css('display','flex');
-      $('#cancel-edit-cell').on('click',()=>{
+      $('#cancel-edit-cell').off('click').on('click',()=>{
       $("#edit-description-title-container").css('display','none')
       })
-      $('#save-edit-cell').on('click',()=>{
+      $('#save-edit-cell').off('click').on('click',()=>{
       $("#edit-description-title-container").css('display','none')
          
         
@@ -591,7 +597,7 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
 
       })
 
-      $('#reset-edit-icon').on('click',()=>{
+      $('#reset-edit-icon').off('click').on('click',()=>{
 
       $('#taskTitleEdit').html(taskTitle);
       $('.date-edit-span').html( taskDate)
@@ -602,24 +608,25 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
 
 
       })
-      $('#exit-edit-view').on('click',()=>{
+      $('#exit-edit-view').off('click').on('click',()=>{
          $('#editView-container').css('display','none')
          editing=false;
       })
 
-      $('.delete-sc').on('click',()=>{
+      $('.delete-sc').off('click').on('click',()=>{
         
       $('.delete-outer-container').css('display','grid');
       $('#task_title-on-delete').html(`Task title : ${$('#edit-task-title').val()||taskTitle}`)
 
       })
 
-      $('#cancel-delete').on('click',()=>$('.delete-outer-container').css('display','none'))
+      $('#cancel-delete').off('click').on('click',()=>$('.delete-outer-container').css('display','none'))
 
        
     
   }
   $('.category-edit').on('click',openCategories)
+
   $('#delete-data').on('click',()=>{
 
     $('.delete-outer-container').css('display','none');
@@ -630,7 +637,7 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
       
      localStorage.setItem('dataSet',JSON.stringify(dataSet));
      const storedData= JSON.parse(localStorage.getItem('dataSet'));
-     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate))
+     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed)
      editing=false;
     populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
 
@@ -668,9 +675,43 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
 
   
     })
+
+    const taskCompleteUpdate=()=>{
+      const storedData= JSON.parse(localStorage.getItem('dataSet'));
+     const todayDataSet=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed)
+     
+    populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
+    refresh()
+
   
+    }
+  
+     function handleTaskAction(){
+       
+     const currentId=  $(this).attr('id');
+      $('#task-edit-action-container').css('display','grid');
+
+      $('#mark-as-completed').off('click').on('click',()=>{
+        const  data= dataSet.find(({id})=>id==currentId)
+        const index= dataSet.indexOf(data);
+          dataSet[index].completed=true;
+          console.log('dataSet[index].completed',dataSet[index].completed);
+          localStorage.setItem('dataSet',JSON.stringify(dataSet))
+          $('#task-edit-action-container').css('display','none');
+          taskCompleteUpdate()
+
+      })
+      
+      $('#enter-edit-interface').off('click').on('click', ()=>{
+        $('#task-edit-action-container').css('display','none');
+        console.log('why am i being called');
+        handle_task_edit(currentId)
+      })
+     }
+     
+
     
-    $('#task-container>section').on('click',handle_task_edit)
+    $('#task-container>section').on('click',handleTaskAction)
     
     
     $('#plus-icon').on('click',addTask);
@@ -685,6 +726,36 @@ const {taskTitle,taskDescription,taskDate,taskTime,taskPriority,category,id}=dat
     $('#close-categories-btn').on('click',closeCategories);
     $('#save-priority-btn').on('click',savePriority);
     $('#cancel-priority-btn').on('click',cancelPriority);
+    const todayCompleted=()=>{
+      const storedData= JSON.parse(localStorage.getItem('dataSet'));
+      const completed=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>completed)
+     
+      populatingFunction(completed,indexPageData,taskIcons,superscript,taskBackground);
+          refresh()
+
+          gsap.from('#today-task-info',{
+            opacity:0,
+            duration:0.5
+
+          })
+    }
+    const todayNotCompleted=()=>{
+      const storedData= JSON.parse(localStorage.getItem('dataSet'));
+      const inCompletedTodayData=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed)
+     
+      populatingFunction(inCompletedTodayData,indexPageData,taskIcons,superscript,taskBackground);
+          refresh()
+          gsap.from('#today-task-info',{
+            opacity:0,
+            duration:0.5
+          })
+    }
+
+    $('#completed-task-container').off('click').on('click',todayCompleted)
+
+
+    $('#today-task-info').off('click').on('click',todayNotCompleted)
+     
     
      
      
