@@ -733,22 +733,36 @@ const {taskTitle,taskDescription,taskDate,taskPriority,category}=data;
       populatingFunction(completed,indexPageData,taskIcons,superscript,taskBackground);
           refresh()
 
-          gsap.from('#today-task-info',{
+          gsap.from('.task-cell-container',{
             opacity:0,
-            duration:0.5
+            duration:0.5,
+            x:100,
+            
+            stagger: 0.2, 
+            ease: "power1.inOut"
 
           })
+          $('#completed-task-container').css('backgroundColor','#8687E7')
+
+        
     }
     const todayNotCompleted=()=>{
+       
       const storedData= JSON.parse(localStorage.getItem('dataSet'));
       const inCompletedTodayData=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed)
      
       populatingFunction(inCompletedTodayData,indexPageData,taskIcons,superscript,taskBackground);
           refresh()
-          gsap.from('#today-task-info',{
+          gsap.from('.task-cell-container',{
             opacity:0,
-            duration:0.5
+            duration:0.5,
+            x:-100,
+            stagger: 0.2, 
+            ease: "power1.inOut"
+
           })
+          $('#today-task-info').css('backgroundColor','#8687E7')
+          
     }
 
     $('#completed-task-container').off('click').on('click',todayCompleted)

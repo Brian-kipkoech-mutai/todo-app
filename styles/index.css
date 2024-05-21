@@ -772,9 +772,11 @@ body::-webkit-scrollbar{
 #task-container{
   display: flex;
   flex-direction: column;
+ 
 
   gap: 1em;
   overflow: auto;
+  overflow-x: hidden;
 }
 .task-cell-container{
   background-color:#1d1d1d;
@@ -1118,6 +1120,7 @@ margin: 0 !important;
   height: 100%;
    position: absolute;
    display: none;
+   grid-template-rows: 2fr 1fr 4fr;
    place-items: center;
    background-color: rgba(0, 0, 0, 0.4); 
    z-index: 30;
@@ -1130,8 +1133,9 @@ margin: 0 !important;
   display: flex;
   flex-direction: column;
   padding: 1em;
-  gap: 1em;
+  gap: 3em;
   border-radius: 1em;
+  grid-row: 2/3;
 
   
 }
