@@ -522,9 +522,17 @@ const handle_task_submit=()=>{
     let html=''
     populatingFunction(todayDataSet,indexPageData,taskIcons,superscript,taskBackground);
      refresh()
-     closeDialogue()
       
-     
+      
+      $("#taskTittleInput").val('');
+      $('#text-decription-txt-area').val('');
+      $("#datepicker").val(''); 
+      $('#task-time').html('');
+      $('#category-value').html('');
+      $('#priority-value-txt').html('');
+      closeDialogue()
+
+
       
  }
  const  refresh=()=>{
@@ -685,20 +693,28 @@ const {taskTitle,taskDescription,taskDate,taskPriority,category}=data;
 
   
     }
-  
+  let completedView=false
      function handleTaskAction(){
-       
+        
      const currentId=  $(this).attr('id');
       $('#task-edit-action-container').css('display','grid');
 
+      if(completedView){
+         
+        $('#mark-as-completed').html('mark as incomplete')
+        
+
+      }
+      
       $('#mark-as-completed').off('click').on('click',()=>{
         const  data= dataSet.find(({id})=>id==currentId)
         const index= dataSet.indexOf(data);
-          dataSet[index].completed=true;
-          console.log('dataSet[index].completed',dataSet[index].completed);
+          dataSet[index].completed=completedView?false:true;
+           
           localStorage.setItem('dataSet',JSON.stringify(dataSet))
           $('#task-edit-action-container').css('display','none');
-          taskCompleteUpdate()
+         completedView?todayCompleted()
+                     :taskCompleteUpdate()
 
       })
       
@@ -731,6 +747,7 @@ const {taskTitle,taskDescription,taskDate,taskPriority,category}=data;
       const completed=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>completed)
      
       populatingFunction(completed,indexPageData,taskIcons,superscript,taskBackground);
+      completedView=true;
           refresh()
 
           gsap.from('.task-cell-container',{
@@ -743,10 +760,15 @@ const {taskTitle,taskDescription,taskDate,taskPriority,category}=data;
 
           })
           $('#completed-task-container').css('backgroundColor','#8687E7')
+            
 
         
     }
     const todayNotCompleted=()=>{
+      completedView=false
+      $('#mark-as-completed').html('Mark as completed')
+          
+      console.log(completedView);
        
       const storedData= JSON.parse(localStorage.getItem('dataSet'));
       const inCompletedTodayData=storedData.filter(({taskDate})=>dateFunction(taskDate)).filter(({completed})=>!completed)
@@ -762,13 +784,17 @@ const {taskTitle,taskDescription,taskDate,taskPriority,category}=data;
 
           })
           $('#today-task-info').css('backgroundColor','#8687E7')
-          
+         
     }
 
     $('#completed-task-container').off('click').on('click',todayCompleted)
 
 
     $('#today-task-info').off('click').on('click',todayNotCompleted)
+
+    $('#close-task-action').on('click',()=>{
+      $('#task-edit-action-container').css('display','none')
+    })
      
     
      

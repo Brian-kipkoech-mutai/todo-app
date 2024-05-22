@@ -1140,9 +1140,24 @@ margin: 0 !important;
   
 }
 #task-action>:first-child{
-  text-align: center;
+  
   width: 100%;
   font-size: 1.2em;
+
+}
+#task-action-header section{
+  display: flex;
+  justify-content: space-between;
+}
+#task-action-header section>:first-child{
+   
+  flex-grow: 0.5;
+  text-align: right;
+
+}
+#task-action-header section>:nth-child(2){
+  font-size: 1.2em;
+  padding-right: 0.1em;
 }
 #task-action>:first-child::after{
   margin-top: 0.5em;
