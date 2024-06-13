@@ -80,7 +80,7 @@
                                   </section>
         <section class="flag-section" value="3">
                     <i class="fas fa-flag" ></i>
-                    <span class="number-label">2</span>
+                    <span class="number-label">3</span>
                 </section>
         <section class="flag-section" value="4">
                     <i class="fas fa-flag" ></i>
@@ -206,7 +206,7 @@
           <div class="datetimeoutercontainer">
             <div id="dialog" >
                 <div class="datepicker-default">
-                   <input type="text" id="datepicker" placeholder=" Pick time and date"  readonly   >
+                   <input type="text" id="datepicker" placeholder=" Pick time and date"  readonly >
                     <label for="datepicker">
                        <i class="fas fa-calendar" id="calender_icon"></i>
                     </label>
@@ -255,8 +255,8 @@
             <div class="taskCellEdit  task-cell-container" >
                 <div class="circle"></div>
                 <div class="task-info-edit">
-                    <div id="taskTitleEdit"  >${taskTitle}</div>
-                    <div id="taskDescriptionedit">${taskDescription}</div>
+                    <div id="taskTitleEdit"  ></div>
+                    <div id="taskDescriptionedit"></div>
                 </div>
                 <div class="edit-pen">
                     <i class="fas fa-pencil-alt icon"></i>
@@ -275,14 +275,14 @@
                         <div><i class="fas fa-tag category-edit"   id="categories_open_btn"></i></div>
                         <div class="pointer category-edit">Task Category</div>
                     </div>
-                    <div><span id="taskIconEdit">${taskIcons[category]}</span><span id="catgegoryedit">${category}</span></div>
+                    <div><span id="taskIconEdit"></span><span id="catgegoryedit"></span></div>
                 </div>
                 <div class="">
                     <div>
                         <div><i class="fas fa-flag priority-edit"   id="priorities-open-btn"></i></div>
                         <div class="pointer priority-edit" >Task Priority</div>
                     </div>
-                    <div><span><i class="fas fa-flag" ></i></span> <span id="flagsuperscriptEdit">${superscript[taskPriority]}</span></div>
+                    <div><span><i class="fas fa-flag" ></i></span> <span id="flagsuperscriptEdit"></span></div>
                 </div>
                  
                 <div class="delete-section"><i class="fas fa-trash-alt delete-sc"></i>
@@ -304,10 +304,12 @@
             <i class="fas fa-home"></i>
             <span class="icons-label">Home</span>
         </section>
-<section class="calender">
+ <a href="/HTML/calendar.html" >
+    <section class="calender"   style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
     <i class="far fa-calendar-alt"></i>
     <span class="icons-label">calender</span>
 </section>
+ </a>
 <section class="plus-con">
     <i class="fas fa-plus-circle" id="plus-icon" ></i>
     <span class="icons-label"></span>

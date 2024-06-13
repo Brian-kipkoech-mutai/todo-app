@@ -6,6 +6,8 @@
  *{
     font-family: 'mona Sans';
     box-sizing: border-box;
+    scrollbar-width: thin; 
+    scrollbar-color:   #797bdf  #1D1D1D; 
  }
  body{
     background-color:#121212;
@@ -15,3 +17,17 @@
     color: #ffffff;
     cursor: pointer;
  }
+ ::-webkit-scrollbar {
+    width: 4px; /* Width of the scrollbar */
+   
+}
+
+ 
+ 
+
+::-webkit-scrollbar-thumb:hover {
+    background:  #6769e6; /* Color of the scrollbar thumb on hover */
+}
+
+/* Custom Scrollbar for Firefox */
+ 

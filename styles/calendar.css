@@ -1,0 +1,74 @@
+.outer-box{
+ display: flex;
+ flex-wrap: wrap;
+}
+
+#calendar {
+  background: #1d1d1d;
+  color: #ffffff; 
+   height: 100svh;
+  overflow: hidden;
+  width: 100%;
+}
+
+#data_info{
+    width: 30%;
+    padding: 10px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+     
+    
+}
+.fc-toolbar {
+  /* background: #797bdf; */
+  border-radius: 10px;
+}
+.fc-col-header-cell > * {
+  padding: 10px;
+}
+.fc-theme-standard td {
+  border-color: #444444;
+}
+.fc-theme-standard .fc-scrollgrid {
+  border-color: #444444;
+}
+.fc-col-header {
+  background-color: #797bdf;
+  border: 1px solid red;
+}
+.fc-col-header > * {
+  stroke: #444444;
+}
+.fc-event {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1000px) {
+  #calendar {
+    width: 70%;
+    
+  }
+}
+#back-btn{
+    background-color: #797bdf;
+    width: 200px;
+    height: 50px;
+    color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    border: 1px solid #444444;
+    
+}
+#backSection{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+ .fc-day-today {
+    background-color:red; /* Light yellow background color */
+}
+
+ 

@@ -714,7 +714,7 @@ body::-webkit-scrollbar{
   background-color: #1d1d1d;
   border-radius: 0.5em;
   width: calc(100vw - 2em);
-  max-width: 380px;
+  max-width: 700px;
   color: #F8F9FA;
   padding: 0em 1em;
   border: 1px solid #363636
@@ -725,9 +725,10 @@ body::-webkit-scrollbar{
   border: none;
   outline: none;
 }
-#today-task-info{
+/* #today-task-info{
   
-}
+
+} */
  .task-btn{
    display: flex;
    justify-content: space-between;
@@ -955,7 +956,7 @@ body::-webkit-scrollbar{
   margin: 0 auto;
 }
  
-.edittask-tittle-decscribtion{
+.edittask-tittle-decscribtion{  
   display: flex;
   flex-direction: column;
  background-color: #363636 ;
