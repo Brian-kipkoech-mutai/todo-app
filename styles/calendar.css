@@ -1,23 +1,24 @@
 .outer-box{
  display: flex;
- flex-wrap: wrap;
+ flex-wrap: wrap-reverse;
 }
 
 #calendar {
   background: #1d1d1d;
   color: #ffffff; 
-   height: 100svh;
+   height: 60svh;
   overflow: hidden;
   width: 100%;
 }
 
 #data_info{
-    width: 30%;
+    width: 100%;
     padding: 10px;
     padding-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #1d1d1d;
      
     
 }
@@ -50,6 +51,12 @@
     width: 70%;
     
   }
+  #data_info{
+        width: 30%;
+  }
+#calendar{
+    height: 100svh;
+}
 }
 #back-btn{
     background-color: #797bdf;
@@ -67,8 +74,10 @@
     align-items: end;
     justify-content: end;
 }
- .fc-day-today {
-    background-color:red; /* Light yellow background color */
+  .fc-day-today .fc-daygrid-day-frame,
+.fc-day-today .fc-timegrid-col-frame,
+.fc-day-today .fc-daygrid-event {
+    background-color: #444444 !important; /* Darker border color */
 }
 
  
